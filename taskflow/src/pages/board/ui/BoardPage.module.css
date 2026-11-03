@@ -1,0 +1,38 @@
+.page {
+  padding: clamp(1rem, 4vw, 1.5rem);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.state {
+  color: var(--text-muted);
+}
+
+.retry {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .toolbar > * {
+    width: 100%;
+  }
+}

@@ -1,0 +1,15 @@
+.trigger {
+  width: 100%;
+  text-align: left;
+}
+
+.form {
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}

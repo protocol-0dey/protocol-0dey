@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>AquaGlow | Премиум Автомойка и Детейлинг</title>
+    <meta name="description" content="Элитный детейлинг-центр. Возвращаем автомобилям первозданный блеск: ручная мойка, нанокерамика, полировка и глубокая химчистка салона.">
+    
+    <!-- PageSpeed: Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#050505',
+                            cyan: '#06b6d4', // cyan-500 equivalent
+                            blue: '#3b82f6', // blue-500
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #fafafa;
+        }
+
+        h1, h2, h3, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Анимированный градиентный текст */
+        .text-gradient-cyan {
+            background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .animate-gradient-text {
+            background-size: 200% auto;
+            animation: textShine 4s linear infinite;
+        }
+
+        @keyframes textShine {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* Glassmorphism для карточек */
+        .glass-panel {
+            background: rgba(24, 24, 27, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Подсветка карточек курсором (Mouse Spotlight) */
+        .glass-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(6,182,212,0.15), transparent 40%);
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        
+        .glass-panel:hover::before {
+            opacity: 1;
+        }
+
+        /* Контент поверх подсветки */
+        .glass-panel > * {
+            position: relative;
+            z-index: 10;
+        }
+
+        .glow-cyan { box-shadow: 0 0 40px rgba(6,182,212,0.2); }
+
+        /* Анимации появления при загрузке */
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .entrance-anim {
+            animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+
+        /* Scroll Reveal (Intersection Observer) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Изображения */
+        .bg-cover-overlay {
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&q=80&w=2000');
+            background-attachment: fixed;
+        }
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(5,5,5,0.6) 0%, rgba(5,5,5,1) 100%);
+        }
+    </style>
+<style>
+:root{--lm-accent:#06b6d4;--lm-accent-text:#001018}
+body.lm-lock{overflow:hidden}
+a:focus-visible,button:focus-visible,[role=button]:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--lm-accent);outline-offset:3px}
+.glass-panel::before,.glass-card::before{border-radius:inherit}
+@media (max-width:1024px){.bg-fixed,.hero-bg{background-attachment:scroll!important}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+.lm-overlay{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.lm-overlay[hidden]{display:none}
+.lm-dialog{position:relative;width:min(460px,100%);max-height:calc(100dvh - 32px);overflow:auto;background:#0d0f14;color:#f4f6fb;border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:28px 24px 24px;box-shadow:0 30px 80px rgba(0,0,0,.6);outline:none;font-family:inherit}
+.lm-close{position:absolute;top:10px;right:10px;width:44px;height:44px;border:0;border-radius:12px;background:transparent;color:#aab2c3;font-size:28px;line-height:1;cursor:pointer}
+.lm-close:hover{background:rgba(255,255,255,.08);color:#fff}
+.lm-title{margin:0 0 6px;padding-right:40px;font-size:1.4rem;font-weight:800;line-height:1.2}
+.lm-sub{margin:0 0 18px;color:#9aa3b5;font-size:.9rem;line-height:1.5}
+.lm-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.lm-field label{font-size:.8rem;font-weight:600;color:#c3c9d6}
+.lm-field input,.lm-field select{width:100%;min-height:46px;padding:12px 14px;font:inherit;font-size:16px;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:12px;color-scheme:dark}
+.lm-field select option{background:#0d0f14;color:#fff}
+.lm-field [aria-invalid="true"]{border-color:#ff6b6b}
+.lm-error{color:#ff8a8a;font-size:.8rem}
+.lm-form-error{margin:0 0 10px;color:#ff8a8a;font-size:.85rem}
+.lm-submit,.lm-done,.lm-menu-cta{display:block;width:100%;min-height:48px;padding:12px 18px;border:0;border-radius:12px;background:var(--lm-accent);color:var(--lm-accent-text);font:inherit;font-weight:800;font-size:1rem;cursor:pointer;transition:filter .15s,transform .05s}
+.lm-submit:hover:not(:disabled),.lm-done:hover,.lm-menu-cta:hover{filter:brightness(1.08)}
+.lm-submit:disabled{opacity:.6;cursor:wait}
+.lm-burger{pointer-events:auto;flex:none;display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:0 12px;margin-left:8px;border:1px solid rgba(255,255,255,.22);border-radius:12px;background:rgba(255,255,255,.04);cursor:pointer}
+.lm-burger span{display:block;height:2px;border-radius:2px;background:#fff;transition:transform .2s,opacity .2s}
+.lm-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.lm-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.lm-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.lm-menu{position:fixed;inset:0;z-index:49;padding:104px 24px 32px;overflow:auto;background:rgba(3,5,10,.97)}
+.lm-menu[hidden]{display:none}
+.lm-menu nav{display:flex;flex-direction:column;gap:6px;max-width:420px;margin:0 auto}
+.lm-menu a{display:block;padding:16px 8px;color:#fff;font-size:1.6rem;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.08)}
+.lm-menu a:hover,.lm-menu a:focus-visible{color:var(--lm-accent)}
+.lm-menu-cta{margin-top:20px}
+@media (min-width:768px){.lm-burger,.lm-menu{display:none!important}}
+.lm-concept{margin:24px 0 0;padding:0 24px;text-align:center;font-size:.8rem;color:rgba(255,255,255,.62)}
+.lm-news-msg{margin:8px 0 0;font-size:.85rem}
+.lm-news-msg.is-error{color:#ff8a8a}
+.lm-news-msg.is-ok{color:var(--lm-accent)}
+</style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-brand-cyan selection:text-black relative">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 glass-panel border-b-0 border-zinc-800/50 entrance-anim">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-brand-cyan to-brand-blue text-white rounded-lg flex items-center justify-center font-black text-xl">A</div>
+                <span class="font-bold text-xl tracking-wide uppercase font-display">Aqua<span class="text-brand-cyan">Glow</span></span>
+            </div>
+            <nav class="hidden md:flex gap-8 text-sm font-medium text-zinc-400">
+                <a href="#home" class="hover:text-white transition-colors">Главная</a>
+                <a href="#services" class="hover:text-white transition-colors">Кузов</a>
+                <a href="#interior" class="hover:text-brand-cyan transition-colors">Салон</a>
+                <a href="#pricing" class="hover:text-white transition-colors">Цены</a>
+            </nav>
+            <button class="px-5 py-2.5 bg-white text-black font-semibold text-sm rounded-lg hover:bg-zinc-200 transition-colors hidden md:block">
+                Записаться
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20">
+        <div class="absolute inset-0 bg-cover-overlay hero-bg z-0"></div>
+        <div class="absolute inset-0 hero-overlay z-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center flex flex-col items-center">
+            
+            <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8 hover:bg-white/10 transition-colors entrance-anim delay-100">
+                <span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse shadow-[0_0_10px_#06b6d4]"></span>
+                <span class="text-sm font-medium tracking-wide text-zinc-300">Свободно 2 окна на сегодня</span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl lg:text-[7rem] font-black tracking-tighter mb-6 leading-none uppercase entrance-anim delay-200">
+                Искусство <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-cyan to-brand-blue animate-gradient-text">Детейлинга</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-12 font-light entrance-anim delay-300">
+                Мы не просто моем машины. Мы возвращаем им заводской блеск, защищаем кузов нанокерамикой и доводим каждую деталь салона до совершенства.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto entrance-anim delay-400">
+                <button class="w-full sm:w-auto px-8 py-4 bg-white text-black font-bold rounded-2xl hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+                    Выбрать услугу
+                </button>
+                <button class="w-full sm:w-auto px-8 py-4 glass-panel text-white font-bold rounded-2xl hover:bg-white/10 hover:border-brand-cyan/50 transition-all duration-300 flex items-center justify-center gap-3 group">
+                    <span>Смотреть работы</span>
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform text-brand-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exterior Services Section (Bento Grid) -->
+    <section id="services" class="py-24 bg-brand-dark border-t border-zinc-800/30 relative">
+        <div class="absolute left-0 top-1/4 w-[500px] h-[500px] bg-brand-cyan/10 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10 reveal">
+            <div class="mb-16">
+                <h2 class="text-4xl md:text-6xl font-black mb-4 tracking-tight uppercase">Внешний <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-blue">Уход</span></h2>
+                <p class="text-zinc-400 text-lg max-w-xl">Индивидуальный подход к кузову с использованием премиальной химии Gyeon и Koch Chemie.</p>
+            </div>
+
+            <!-- Bento Grid Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Card 1: Ручная мойка -->
+                <div class="glass-panel p-8 rounded-[2rem] flex flex-col h-full hover:border-brand-cyan/40 transition-all duration-500 hover:-translate-y-1 group">
+                    <div class="w-14 h-14 bg-white/5 border border-white/10 text-brand-cyan rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 tracking-tight uppercase">Трехфазная Мойка</h3>
+                    <p class="text-zinc-400 mb-8 flex-grow leading-relaxed text-sm">Бережная ручная мойка кузова в 3 этапа. Удаление статических загрязнений без повреждения лака.</p>
+                </div>
+
+                <!-- Card 2: Керамика (Large) -->
+                <div class="glass-panel rounded-[2rem] flex flex-col h-full hover:border-brand-cyan/40 transition-all duration-500 hover:-translate-y-1 group lg:col-span-2 overflow-hidden p-0 relative min-h-[400px]">
+                    <div class="absolute inset-0 z-0">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1605553531631-07310df0be84?auto=format&fit=crop&q=80&w=1200" alt="Ceramic Coating" class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/60 to-transparent"></div>
+                    </div>
+                    <div class="relative z-10 flex flex-col justify-end h-full p-8">
+                        <div class="inline-block px-3 py-1 bg-brand-cyan/20 border border-brand-cyan/30 text-brand-cyan text-xs font-bold uppercase rounded-full mb-4 w-max backdrop-blur-md">Хит сезона</div>
+                        <h3 class="text-3xl lg:text-4xl font-bold mb-4 tracking-tight uppercase">Нанокерамика 9H</h3>
+                        <p class="text-zinc-300 mb-6 max-w-lg leading-relaxed">Максимальная защита кузова от царапин, реагентов и УФ-лучей. Зеркальный блеск на срок до 2-х лет.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Полировка -->
+                <div class="glass-panel rounded-[2rem] flex flex-col h-[350px] hover:border-brand-cyan/40 transition-all duration-500 hover:-translate-y-1 group overflow-hidden p-0 relative lg:col-span-3">
+                    <div class="absolute inset-0 z-0">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80&w=1200" alt="Car Polishing" class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent"></div>
+                    </div>
+                    <div class="relative z-10 flex flex-col justify-center h-full p-8 max-w-2xl">
+                        <h3 class="text-3xl font-bold mb-3 tracking-tight uppercase">Восстановительная Полировка</h3>
+                        <p class="text-zinc-400 text-sm mb-4">Удаление до 95% царапин, "паутинки" и голограмм. Возвращаем кузову идеальную гладкость и выставочный блеск перед нанесением защитных составов.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Interior Detailing Section -->
+    <section id="interior" class="py-24 border-t border-zinc-800/50 relative overflow-hidden">
+        <!-- Декоративное свечение -->
+        <div class="absolute right-0 top-1/3 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-[150px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10 reveal">
+            <div class="mb-16">
+                <div class="inline-block px-4 py-1 rounded-full border border-brand-cyan/30 text-brand-cyan text-xs font-bold tracking-widest uppercase mb-4 bg-brand-cyan/5">Детейлинг интерьера</div>
+                <h2 class="text-4xl md:text-5xl font-black uppercase tracking-wide mb-4">Идеальная <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500">чистота</span> внутри</h2>
+                <p class="text-zinc-400 text-lg max-w-2xl">Скрупулезный подход к каждой детали. Мы разбираем элементы салона, чтобы добраться до скрытых загрязнений и вернуть материалам их первозданный матовый вид и аромат нового авто.</p>
+            </div>
+
+            <!-- Asymmetric Bento Grid for Interior -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                
+                <!-- Card 1: Глубокая химчистка (Large span 2 cols, span 2 rows) -->
+                <div class="glass-panel rounded-[2rem] overflow-hidden relative group md:col-span-2 md:row-span-2 min-h-[450px] hover:border-brand-cyan/40 transition-all duration-500 hover:-translate-y-1">
+                    <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1600461875152-7b243be4f561?auto=format&fit=crop&q=80&w=1200" alt="Dry Cleaning" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                    <div class="relative z-10 p-8 flex flex-col justify-end h-full">
+                        <div class="w-12 h-12 bg-brand-cyan/20 border border-brand-cyan/40 text-brand-cyan rounded-xl flex items-center justify-center mb-6 backdrop-blur-md">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-3 tracking-tight uppercase text-white">Глубокая экстракторная химчистка</h3>
+                        <p class="text-zinc-300 text-sm leading-relaxed max-w-lg">Используем мощные моющие пылесосы и гипоаллергенную биоразлагаемую химию (Koch Chemie). Поднимаем ворс, вытягиваем въевшуюся грязь, песок и пятна из ковролина, тканевых сидений и потолка. В салоне не остается химии — только чистота.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Уход за кожей (Span 1 col) -->
+                <div class="glass-panel rounded-[2rem] overflow-hidden relative group min-h-[250px] hover:border-brand-cyan/40 transition-all duration-500 hover:-translate-y-1">
+                    <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1549424107-160cd0989f66?auto=format&fit=crop&q=80&w=600" alt="Leather Care" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent"></div>
+                    <div class="relative z-10 p-6 flex flex-col justify-end h-full">
+                        <h3 class="text-xl font-bold mb-2 tracking-tight uppercase text-white">Уход за кожей</h3>
+                        <p class="text-zinc-300 text-xs leading-relaxed">Деликатная чистка пор кожи специальными мягкими щетками. Нанесение матового крема-консерванта LeTech для защиты от затирания и УФ-лучей.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Детейлинг пластика (Span 1 col) -->
+                <div class="glass-panel rounded-[2rem] overflow-hidden relative group min-h-[250px] hover:border-brand-cyan/40 transition-all duration-500 hover:-translate-y-1">
+                    <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1621217744319-32524a8fc378?auto=format&fit=crop&q=80&w=600" alt="Detailing Brushes" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent"></div>
+                    <div class="relative z-10 p-6 flex flex-col justify-end h-full">
+                        <h3 class="text-xl font-bold mb-2 tracking-tight uppercase text-brand-cyan">Работа кисточками</h3>
+                        <p class="text-zinc-300 text-xs leading-relaxed">Проходим каждый стык, воздуховод, кнопки и швы деликатными кисточками. Никакой жирной полироли — только заводской матовый эффект.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Озонация (Span 3 cols on mobile, span 3 on desktop for a wide bar) -->
+                <div class="glass-panel p-8 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-6 hover:border-brand-cyan/40 transition-all duration-500 hover:-translate-y-1 group md:col-span-3 border-brand-cyan/20">
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-white/5 border border-white/10 text-brand-cyan rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-500">
+                            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2 tracking-tight uppercase">Озонация салона</h3>
+                            <p class="text-zinc-400 text-sm max-w-3xl">Завершающий этап. Уничтожение бактерий, плесени в системе кондиционирования и молекул неприятных запахов (табак, сырость, животные) с помощью профессионального генератора озона.</p>
+                        </div>
+                    </div>
+                    <button class="px-6 py-3 bg-brand-cyan text-black font-bold rounded-xl hover:bg-brand-blue transition-colors text-sm shrink-0 shadow-[0_0_20px_rgba(6,182,212,0.3)] w-full md:w-auto">
+                        Добавить к заказу
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 border-t border-zinc-800/50 relative overflow-hidden bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-6 relative z-10 reveal">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black uppercase tracking-wide mb-4">Комплексы <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-blue">Услуг</span></h2>
+                <div class="inline-block px-4 py-1 rounded-full border border-zinc-700 text-xs font-mono text-zinc-400">ПОПУЛЯРНЫЕ ТАРИФЫ</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Базовый -->
+                <div class="glass-panel p-8 rounded-2xl border-zinc-800 hover:border-brand-cyan/50 transition-colors flex flex-col">
+                    <div class="text-center mb-8">
+                        <div class="text-sm font-bold text-zinc-400 uppercase tracking-widest mb-3">Базовый уход</div>
+                        <div class="text-4xl font-black text-white mb-2">6 000 ₽</div>
+                        <p class="text-xs text-zinc-500">Время: ~3 часа</p>
+                    </div>
+                    <ul class="space-y-4 mb-8 border-t border-zinc-800 pt-6 text-sm text-zinc-300 flex-grow">
+                        <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 3-х фазная мойка кузова</li>
+                        <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Уборка салона пылесосом</li>
+                        <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Очистка стекол изнутри</li>
+                    </ul>
+                    <button class="w-full py-4 border border-zinc-700 text-white font-bold rounded-xl hover:bg-white hover:text-black transition-colors">Выбрать</button>
+                </div>
+
+                <!-- Детейлинг (Акцент) -->
+                <div class="glass-panel p-8 rounded-2xl border-brand-cyan/40 relative transform md:-translate-y-4 glow-cyan flex flex-col" style="overflow:visible">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-cyan to-brand-blue text-black text-[10px] font-black uppercase px-4 py-1.5 rounded-full tracking-wider shadow-lg">Выбор клиентов</div>
+                    <div class="text-center mb-8 mt-4">
+                        <div class="text-sm font-bold text-brand-cyan uppercase tracking-widest mb-3">Детейлинг Комплекс</div>
+                        <div class="text-5xl font-black text-white mb-2">35 000 ₽</div>
+                        <p class="text-xs text-zinc-400">Время: 1-2 дня</p>
+                    </div>
+                    <ul class="space-y-4 mb-8 border-t border-zinc-800 pt-6 text-sm text-zinc-200 flex-grow">
+                        <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Детейлинг мойка кисточками</li>
+                        <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Глубокая химчистка салона</li>
+                        <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Озонация интерьера</li>
+                        <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Керамика кузова (1 слой)</li>
+                    </ul>
+                    <button class="w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)]">Записаться онлайн</button>
+                </div>
+
+                <!-- Выставочный блеск -->
+                <div class="glass-panel p-8 rounded-2xl border-zinc-800 hover:border-brand-cyan/50 transition-colors flex flex-col">
+                    <div class="text-center mb-8">
+                        <div class="text-sm font-bold text-zinc-400 uppercase tracking-widest mb-3">Выставочный блеск</div>
+                        <div class="text-4xl font-black text-white mb-2">90 000 ₽</div>
+                        <p class="text-xs text-zinc-500">Время: 3-5 дней</p>
+                    </div>
+                    <ul class="space-y-4 mb-8 border-t border-zinc-800 pt-6 text-sm text-zinc-300 flex-grow">
+                        <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Восстановительная полировка</li>
+                        <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Премиум керамика (3 слоя 9H)</li>
+                        <li class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Керамика кожи и текстиля</li>
+                    </ul>
+                    <button class="w-full py-4 border border-zinc-700 text-white font-bold rounded-xl hover:bg-white hover:text-black transition-colors">Запросить расчет</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-zinc-900 text-center text-zinc-500 text-sm">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2 font-display uppercase tracking-wider text-white">
+                <div class="w-6 h-6 bg-brand-cyan rounded flex items-center justify-center text-black font-bold text-xs">A</div>
+                AquaGlow
+            </div>
+            <p>© 2026 AquaGlow Detailing. Все права защищены.</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-brand-cyan transition-colors">Instagram</a>
+                <a href="#" class="hover:text-brand-cyan transition-colors">Telegram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll Reveal Animation 
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { 
+                threshold: 0.15, 
+                rootMargin: "0px 0px -50px 0px" 
+            });
+            
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+            // Dynamic Mouse Spotlight Effect for all glass-panels
+            const glassPanels = document.querySelectorAll('.glass-panel');
+            
+            glassPanels.forEach(panel => {
+                panel.addEventListener('mousemove', (e) => {
+                    const rect = panel.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    panel.style.setProperty('--mouse-x', `${x}px`);
+                    panel.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+        });
+    </script>
+<script>
+(function(){
+'use strict';
+var CFG = {"menuHost": "header > div", "menuLinks": "header nav a", "menuCta": "Записаться", "title": "Запись на услугу", "subtitle": "Оставьте контакты, и мы свяжемся, чтобы подтвердить время.", "submitLabel": "Отправить заявку", "successTitle": "Заявка отправлена", "successText": "Мы свяжемся с вами, чтобы подтвердить время. (Демо: данные никуда не отправляются.)", "concept": "Концепт-проект: бренд, цены и услуги вымышлены.", "fields": [{"name": "name", "label": "Имя", "type": "text", "required": true, "validate": "name", "autocomplete": "name", "placeholder": "Как к вам обращаться"}, {"name": "phone", "label": "Телефон", "type": "tel", "required": true, "validate": "phone", "autocomplete": "tel", "placeholder": "+7 900 000-00-00"}, {"name": "service", "label": "Услуга", "type": "select", "required": true, "validate": "select", "placeholder": "Выберите услугу", "options": ["Базовый уход", "Детейлинг Комплекс", "Выставочный блеск", "Нанокерамика 9H", "Восстановительная полировка", "Глубокая химчистка салона", "Озонация салона"]}, {"name": "car", "label": "Марка и модель авто", "type": "text", "required": false, "validate": "optionalText", "placeholder": "Например, BMW X5"}]};
+function $(s,r){return (r||document).querySelector(s);}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+function el(html){var t=document.createElement('template');t.innerHTML=html.trim();return t.content.firstChild;}
+function todayStr(){var t=new Date();return t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');}
+
+/* Replace the body of this function with a real request when the backend is ready. */
+function submitLead(payload){
+  // return fetch('/api/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+  //   .then(function(r){ if(!r.ok) throw new Error('Request failed'); return r.json(); });
+  return new Promise(function(resolve){ setTimeout(function(){ console.info('[demo] lead', payload); resolve({ok:true}); },700); });
+}
+
+var validators = {
+  name:function(v){return v.trim().length>=2?'':'Введите имя (минимум 2 символа)';},
+  email:function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())?'':'Введите корректный email';},
+  phone:function(v){var d=v.replace(/\D/g,'');return d.length>=10&&d.length<=15?'':'Введите телефон (10–15 цифр)';},
+  select:function(v){return v?'':'Выберите вариант';},
+  date:function(v){if(!v)return 'Выберите дату';return v>=todayStr()?'':'Дата не может быть в прошлом';},
+  optionalText:function(v){return v.trim().length>=2?'':'Слишком короткое значение';}
+};
+
+function fieldHtml(f){
+  var id='lm-f-'+f.name,req=f.required?' <span aria-hidden="true">*</span>':'',control;
+  if(f.type==='select'){
+    control='<select id="'+id+'" name="'+f.name+'">'+(f.placeholder?'<option value="">'+f.placeholder+'</option>':'')+f.options.map(function(o){return '<option value="'+o+'">'+o+'</option>';}).join('')+'</select>';
+  }else{
+    control='<input id="'+id+'" name="'+f.name+'" type="'+f.type+'"'+(f.autocomplete?' autocomplete="'+f.autocomplete+'"':'')+(f.placeholder?' placeholder="'+f.placeholder+'"':'')+'>';
+  }
+  return '<div class="lm-field"><label for="'+id+'">'+f.label+req+'</label>'+control+'<span class="lm-error" id="'+id+'-err" role="alert"></span></div>';
+}
+
+/* ---------- modal ---------- */
+var overlay=el('<div class="lm-overlay" hidden><div class="lm-dialog" role="dialog" aria-modal="true" aria-labelledby="lm-title" tabindex="-1"><button type="button" class="lm-close" aria-label="Закрыть окно">×</button><div class="lm-body"><h2 id="lm-title" class="lm-title"></h2><p class="lm-sub"></p><form novalidate>'+CFG.fields.map(fieldHtml).join('')+'<p class="lm-form-error" role="alert"></p><button type="submit" class="lm-submit"></button></form></div><div class="lm-success" hidden><h2 class="lm-title"></h2><p class="lm-sub"></p><button type="button" class="lm-done">Закрыть</button></div></div></div>');
+document.body.appendChild(overlay);
+var dialog=$('.lm-dialog',overlay),form=$('form',overlay),body=$('.lm-body',overlay),success=$('.lm-success',overlay),submitBtn=$('.lm-submit',overlay),formError=$('.lm-form-error',overlay),lastFocus=null;
+$('.lm-title',body).textContent=CFG.title;
+$('.lm-sub',body).textContent=CFG.subtitle;
+submitBtn.textContent=CFG.submitLabel;
+var dateInput=$('input[type=date]',form); if(dateInput){dateInput.min=todayStr();}
+
+function clearErrors(){
+  $$('.lm-error',form).forEach(function(e){e.textContent='';});
+  $$('[aria-invalid]',form).forEach(function(c){c.removeAttribute('aria-invalid');c.removeAttribute('aria-describedby');});
+  formError.textContent='';
+}
+function setError(c,msg){c.setAttribute('aria-invalid','true');c.setAttribute('aria-describedby',c.id+'-err');$('#'+c.id+'-err').textContent=msg;}
+
+function openModal(preset){
+  closeMenu();
+  lastFocus=document.activeElement;
+  form.reset();clearErrors();body.hidden=false;success.hidden=true;
+  submitBtn.disabled=false;submitBtn.textContent=CFG.submitLabel;
+  if(preset){Object.keys(preset).forEach(function(k){
+    var c=form.elements[k];if(!c||!preset[k])return;
+    if(c.tagName==='SELECT'){var want=String(preset[k]).trim().toLowerCase();for(var i=0;i<c.options.length;i++){if(c.options[i].value.toLowerCase()===want){c.selectedIndex=i;break;}}}
+    else{c.value=preset[k];}
+  });}
+  overlay.hidden=false;document.body.classList.add('lm-lock');
+  var first=$('input,select',form);(first||dialog).focus();
+}
+function closeModal(){
+  if(overlay.hidden)return;
+  overlay.hidden=true;document.body.classList.remove('lm-lock');
+  if(lastFocus&&lastFocus.focus)lastFocus.focus();
+}
+$('.lm-close',overlay).addEventListener('click',closeModal);
+$('.lm-done',overlay).addEventListener('click',closeModal);
+overlay.addEventListener('mousedown',function(e){if(e.target===overlay)closeModal();});
+overlay.addEventListener('keydown',function(e){
+  if(e.key!=='Tab')return;
+  var items=$$('button,input,select,a[href]',dialog).filter(function(n){return !n.disabled&&n.offsetParent!==null;});
+  if(!items.length)return;
+  var first=items[0],last=items[items.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+});
+form.addEventListener('input',function(e){
+  var c=e.target;if(c.getAttribute&&c.getAttribute('aria-invalid')){c.removeAttribute('aria-invalid');var err=$('#'+c.id+'-err');if(err)err.textContent='';}
+});
+form.addEventListener('submit',function(e){
+  e.preventDefault();clearErrors();
+  var data={},firstBad=null;
+  CFG.fields.forEach(function(f){
+    var c=form.elements[f.name],v=c.value;data[f.name]=v.trim();
+    var msg='';
+    if(f.validate&&(f.required||v.trim()!==''))msg=validators[f.validate](v);
+    if(msg){setError(c,msg);if(!firstBad)firstBad=c;}
+  });
+  if(firstBad){firstBad.focus();return;}
+  submitBtn.disabled=true;submitBtn.textContent='Отправляем…';
+  submitLead(data).then(function(){
+    body.hidden=true;success.hidden=false;
+    $('.lm-title',success).textContent=CFG.successTitle;
+    $('.lm-sub',success).textContent=CFG.successText;
+    $('.lm-done',success).focus();
+  }).catch(function(){
+    submitBtn.disabled=false;submitBtn.textContent=CFG.submitLabel;
+    formError.textContent='Не удалось отправить. Попробуйте ещё раз.';
+  });
+});
+
+/* ---------- mobile menu ---------- */
+var burger=null,menu=null;
+function openMenu(){if(!menu)return;menu.hidden=false;burger.setAttribute('aria-expanded','true');burger.setAttribute('aria-label','Закрыть меню');document.body.classList.add('lm-lock');}
+function closeMenu(){if(!menu||menu.hidden)return;menu.hidden=true;burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Открыть меню');document.body.classList.remove('lm-lock');}
+function initMenu(){
+  var host=$(CFG.menuHost);if(!host)return;
+  var seen={},links=[];
+  $$(CFG.menuLinks).forEach(function(a){var h=a.getAttribute('href');if(!h||h.charAt(0)!=='#'||seen[h])return;seen[h]=1;links.push({href:h,text:a.textContent.trim()});});
+  burger=el('<button type="button" class="lm-burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="lm-menu"><span></span><span></span><span></span></button>');
+  menu=el('<div class="lm-menu" id="lm-menu" hidden><nav aria-label="Мобильное меню">'+links.map(function(l){return '<a href="'+l.href+'">'+l.text+'</a>';}).join('')+'<button type="button" class="lm-menu-cta">'+CFG.menuCta+'</button></nav></div>');
+  host.appendChild(burger);document.body.appendChild(menu);
+  burger.addEventListener('click',function(){menu.hidden?openMenu():closeMenu();});
+  menu.addEventListener('click',function(e){
+    var t=e.target;
+    if(t.tagName==='A')closeMenu();
+    else if(t.classList.contains('lm-menu-cta')){openModal();}
+  });
+  window.addEventListener('resize',function(){if(window.innerWidth>=768)closeMenu();});
+}
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Escape')return;
+  if(!overlay.hidden)closeModal();else closeMenu();
+});
+
+/* ---------- helpers for page-specific code ---------- */
+function bindByText(map){
+  $$('button, a').forEach(function(b){
+    if(overlay.contains(b))return;
+    var key=b.textContent.replace(/\s+/g,' ').trim().toLowerCase();
+    if(Object.prototype.hasOwnProperty.call(map,key)){
+      b.addEventListener('click',function(e){e.preventDefault();openModal(map[key](b));});
+    }
+  });
+}
+function bindScroll(text,target){
+  $$('button, a').forEach(function(b){
+    if(b.textContent.replace(/\s+/g,' ').trim().toLowerCase()!==text)return;
+    b.addEventListener('click',function(e){e.preventDefault();var t=$(target);if(t)t.scrollIntoView({behavior:'smooth'});});
+  });
+}
+
+
+function cardTitle(b){var card=b.closest('.glass-panel');var t=card&&card.querySelector('.uppercase.tracking-widest');return t?t.textContent.trim():'';}
+bindByText({
+  'записаться':function(){return null;},
+  'выбрать услугу':function(){return null;},
+  'записаться онлайн':function(b){return {service:cardTitle(b)};},
+  'выбрать':function(b){return {service:cardTitle(b)};},
+  'запросить расчет':function(b){return {service:cardTitle(b)};},
+  'добавить к заказу':function(){return {service:'Озонация салона'};}
+});
+bindScroll('смотреть работы','#services');
+
+
+initMenu();
+var footer=$('footer');
+if(footer){footer.appendChild(el('<p class="lm-concept">'+CFG.concept+'</p>'));}
+})();
+</script>
+</body>
+</html>

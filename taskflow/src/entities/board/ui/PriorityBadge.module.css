@@ -1,0 +1,22 @@
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+}
+
+.low {
+  background: color-mix(in srgb, var(--priority-low) 15%, transparent);
+  color: var(--priority-low);
+}
+.medium {
+  background: color-mix(in srgb, var(--priority-medium) 15%, transparent);
+  color: var(--priority-medium);
+}
+.high {
+  background: color-mix(in srgb, var(--priority-high) 15%, transparent);
+  color: var(--priority-high);
+}

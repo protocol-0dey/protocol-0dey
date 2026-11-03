@@ -1,0 +1,43 @@
+.card {
+  list-style: none;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.8rem;
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: flex-start;
+  touch-action: manipulation;
+}
+
+.card:hover {
+  border-color: var(--accent);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+.dragging {
+  opacity: 0.35;
+}
+
+.overlay {
+  cursor: grabbing;
+  box-shadow: var(--shadow);
+  border-color: var(--accent);
+}
+
+.title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.description {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}

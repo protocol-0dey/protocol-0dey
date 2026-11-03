@@ -1,0 +1,14 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form button[type='submit'] {
+  margin-top: 0.5rem;
+}
+
+.formError {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem;
+}
