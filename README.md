@@ -1,59 +1,53 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:4c1d95,100:7c3aed&height=170&section=header&text=Aleks&fontColor=ffffff&fontSize=60&fontAlignY=38&desc=Frontend%20developer%20%C2%B7%20React%20%2B%20TypeScript&descAlignY=62&descSize=20" alt="banner" width="100%" />
-
 <div align="center">
 
-![Profile views](https://komarev.com/ghpvc/?username=protocol-0dey&style=flat-square&color=7c3aed&label=Profile+views)
+# Aleks
+
+**Frontend developer** · React · TypeScript
+
+Responsive interfaces built from visual references, with working UI states and an API layer ready for a backend.
+
 ![React](https://img.shields.io/badge/React-19-20232A?style=flat-square&logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
 ![Open to work](https://img.shields.io/badge/Open%20to-frontend%20roles-7c3aed?style=flat-square)
 
 </div>
 
-## 👋 About me
+---
 
-I build fast, responsive interfaces that work on every device, from a visual reference to a fully working UI (clicks, forms, modals) that is ready to plug into a backend. I care about clean architecture, accessibility and tested code, and I use AI tools every day, but I read, run and verify everything they write.
+## About
 
-## 🛠 Skills
+I turn visual references into responsive, accessible interfaces and bring them to a fully working state: clicks, forms, modals, loading, empty and error states. The data layer is isolated behind a typed API client, so connecting a real backend does not touch the UI.
 
-**Frontend**
-
-<p>
-  <img src="https://skillicons.dev/icons?i=react,ts,js,html,css,tailwind,vite&theme=dark" alt="frontend skills" />
-</p>
-
-**Also**
+## Stack
 
 <p>
-  <img src="https://skillicons.dev/icons?i=nodejs,python,git,github,vscode,linux,vercel,figma&theme=dark" alt="tools" />
+  <img src="https://skillicons.dev/icons?i=react,ts,js,html,css,tailwind,vite,nodejs,git,github,vscode,figma&theme=dark" alt="React, TypeScript, JavaScript, HTML, CSS, Tailwind, Vite, Node.js, Git, GitHub, VS Code, Figma" />
 </p>
 
-## 🚀 Projects
+## Projects
 
-| Project | What it is | Stack |
-| --- | --- | --- |
-| [**TaskFlow**](taskflow/) | Kanban task manager: landing with one-click demo, light/dark themes, drag-and-drop (mouse, touch, keyboard), optimistic updates with rollback, API layer ready for a real backend | React 19, TypeScript strict, Zustand, dnd-kit, Vite, Vitest, Playwright |
-| [**Concept landings**](landings/) | Three landing pages built from a visual direction (Nexus, AquaGlow, Strato): mobile menu, validated modal forms, keyboard and screen-reader support | HTML, Tailwind, vanilla JS |
+### [TaskFlow](taskflow/) · Kanban task manager
 
-TaskFlow highlights: Feature-Sliced Design, normalized state, unit + component + e2e tests, ESLint/Prettier/Husky/Conventional Commits, GitHub Actions. Details in [taskflow/README.md](taskflow/README.md).
+Landing page with a one-click demo, light and dark themes, drag-and-drop with mouse, touch and keyboard, optimistic updates with rollback, and a mock API that switches to a real HTTP client through one environment variable (contract in [API.md](taskflow/docs/API.md)).
 
-## 📈 Statistics
+`React 19` `TypeScript strict` `Zustand` `dnd-kit` `React Router 7` `CSS Modules` `Vitest` `Playwright`
 
-<p align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=protocol-0dey&show_icons=true&theme=radical&hide_border=true&bg_color=0d1117" alt="GitHub stats" />
-  <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=protocol-0dey&layout=compact&theme=radical&hide_border=true&bg_color=0d1117" alt="Top languages" />
-</p>
+Engineering: Feature-Sliced Design, normalized state, unit, component and e2e tests, ESLint, Prettier, Husky, Conventional Commits, GitHub Actions.
 
-## 🤖 How I work with AI
+### [Concept landings](landings/) · Nexus, AquaGlow, Strato
 
-- I use AI assistants to draft code, tests and docs, and to explore options quickly.
-- I never merge what I have not read: every change goes through lint, type checking, tests and a manual run in the browser on desktop and phone.
-- Architecture and trade-offs are my decisions, and I can explain every line in my repositories.
+Three landing pages built from a visual direction: glassmorphism, bento grids, scroll reveal. Mobile navigation, validated modal forms with success states, keyboard and screen-reader support, and a single `submitLead()` function to replace with a real request. Brands and data are fictional.
 
-## 📫 Contacts
+`HTML` `Tailwind CSS` `Vanilla JS`
 
-<!-- Uncomment and fill in:
-[![Telegram](https://img.shields.io/badge/Telegram-@your_nick-26A5E4?style=flat-square&logo=telegram&logoColor=white)](https://t.me/your_nick)
--->
+## How I work with AI
+
+- AI assistants draft code, tests and documentation, and help me compare options quickly.
+- Nothing is merged unread. Every change goes through linting, type checking, tests and a manual run in the browser on desktop and mobile.
+- Architecture and trade-offs are my decisions, and I can explain the code in my repositories.
+
+## Contact
+
 [![GitHub](https://img.shields.io/badge/GitHub-protocol--0dey-181717?style=flat-square&logo=github)](https://github.com/protocol-0dey)
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:7c3aed,100:4c1d95&height=100&section=footer" alt="footer" width="100%" />
+<!-- Add your Telegram: [![Telegram](https://img.shields.io/badge/Telegram-@your_nick-26A5E4?style=flat-square&logo=telegram&logoColor=white)](https://t.me/your_nick) -->

@@ -2,7 +2,7 @@
 
 > A Kanban task manager (Trello-style) built to production standards: typed, tested, linted, and deployed through CI.
 
-[![CI](https://github.com/protocol-0dey/protokol-0dey/actions/workflows/ci.yml/badge.svg)](https://github.com/protocol-0dey/protokol-0dey/actions/workflows/ci.yml)
+[![CI](https://github.com/protocol-0dey/protocol-0dey/actions/workflows/ci.yml/badge.svg)](https://github.com/protocol-0dey/protocol-0dey/actions/workflows/ci.yml)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB)
 
@@ -77,8 +77,8 @@ Key decisions:
 ## Getting started
 
 ```bash
-git clone https://github.com/protocol-0dey/protokol-0dey.git
-cd protokol-0dey/taskflow
+git clone https://github.com/protocol-0dey/protocol-0dey.git
+cd protocol-0dey/taskflow
 npm install
 cp .env.example .env
 npm run dev
