@@ -54,6 +54,7 @@ Private projects, available to walk through on a call.
 ## Contact
 
 [![GitHub](https://img.shields.io/badge/GitHub-protocol--0dey-181717?style=for-the-badge&logo=github)](https://github.com/protocol-0dey)
+![WhatsApp](https://img.shields.io/badge/WhatsApp-@criata-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)
 <!-- Add your Telegram: [![Telegram](https://img.shields.io/badge/Telegram-@your_nick-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/your_nick) -->
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:7c3aed,100:1e1b4b&height=90&section=footer" alt="" width="100%" />
