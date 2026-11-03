@@ -1,45 +1,49 @@
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1e1b4b,50:4c1d95,100:7c3aed&height=190&section=header&text=Aleks&fontColor=ffffff&fontSize=64&fontAlignY=36&desc=Frontend%20%C2%B7%20React%20%2B%20TypeScript%20%C2%B7%20AI%20tooling&descAlignY=60&descSize=20" alt="Aleks, frontend developer" width="100%" />
+
 <div align="center">
 
-# Aleks
+![React](https://img.shields.io/badge/React-19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Open to work](https://img.shields.io/badge/Open%20to-frontend%20roles-7c3aed?style=for-the-badge)
 
-**Frontend developer** · React · TypeScript
-
-Responsive interfaces built from visual references, with working UI states and an API layer ready for a backend.
-
-![React](https://img.shields.io/badge/React-19-20232A?style=flat-square&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
-![Open to work](https://img.shields.io/badge/Open%20to-frontend%20roles-7c3aed?style=flat-square)
+**I build interfaces from visual references and take them all the way to working UI:<br>responsive, accessible, with real states, and an API layer ready for a backend.**
 
 </div>
 
----
-
-## About
-
-I turn visual references into responsive, accessible interfaces and bring them to a fully working state: clicks, forms, modals, loading, empty and error states. The data layer is isolated behind a typed API client, so connecting a real backend does not touch the UI.
-
 ## Stack
 
-<p>
-  <img src="https://skillicons.dev/icons?i=react,ts,js,html,css,tailwind,vite,nodejs,git,github,vscode,figma&theme=dark" alt="React, TypeScript, JavaScript, HTML, CSS, Tailwind, Vite, Node.js, Git, GitHub, VS Code, Figma" />
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=react,ts,js,html,css,tailwind,vite,nodejs,express,nestjs,python,fastapi,electron,docker,git,github,vscode,figma,linux&theme=dark" alt="Technology stack" />
 </p>
 
-## Projects
+## Featured work
 
 ### [TaskFlow](taskflow/) · Kanban task manager
 
-Landing page with a one-click demo, light and dark themes, drag-and-drop with mouse, touch and keyboard, optimistic updates with rollback, and a mock API that switches to a real HTTP client through one environment variable (contract in [API.md](taskflow/docs/API.md)).
+A production-style SPA: landing page with a one-click demo, light and dark themes, drag-and-drop with mouse, touch and keyboard, optimistic updates with rollback, realtime sync across tabs. The mock API switches to a real HTTP client through one environment variable (contract in [API.md](taskflow/docs/API.md)).
 
-`React 19` `TypeScript strict` `Zustand` `dnd-kit` `React Router 7` `CSS Modules` `Vitest` `Playwright`
-
-Engineering: Feature-Sliced Design, normalized state, unit, component and e2e tests, ESLint, Prettier, Husky, Conventional Commits, GitHub Actions.
+`React 19` `TypeScript strict` `Zustand` `dnd-kit` `React Router 7` `CSS Modules` `Vitest` `Playwright` `GitHub Actions`
 
 ### [Concept landings](landings/) · Nexus, AquaGlow, Strato
 
-Three landing pages built from a visual direction: glassmorphism, bento grids, scroll reveal. Mobile navigation, validated modal forms with success states, keyboard and screen-reader support, and a single `submitLead()` function to replace with a real request. Brands and data are fictional.
+Three landing pages built from a visual direction: glassmorphism, bento grids, scroll reveal. Mobile navigation, validated modal forms, keyboard and screen-reader support, one `submitLead()` function to swap for a real request. Brands and data are fictional.
 
 `HTML` `Tailwind CSS` `Vanilla JS`
+
+## Larger systems I have built
+
+Private projects, available to walk through on a call.
+
+| Project | What it is | Stack |
+| --- | --- | --- |
+| **Neural IDE** | AI IDE in the browser: multi-provider LLM chat (OpenAI, Anthropic, Gemini, Ollama, OpenRouter), parallel agent coordinator, drag-and-drop workflow canvas, Puppeteer browser agent with live screenshots over WebSocket, SSE streaming, IndexedDB memory | React, Vite, Node.js, Express |
+| **Company Hub** | Desktop studio that connects local and API LLMs with MCP servers: company departments as separate windows with responsible agents, request logs and history, knowledge base (RAG), forecasting module | Node.js, Electron, React |
+| **ACE** | AI agent platform with layered memory and multi-tenant gateway: REST and WebSocket runtime, JWT auth, tenant isolation covered by end-to-end tests | FastAPI, NestJS, SQLite |
+| **SmartQuote** | Estimate calculator for repair tradespeople: line items with per-row VAT, discounts, markup, CSV export, print to PDF, saved quotes, dark and light themes, PL / EN / RU | React, Vite, TypeScript |
+| **Asveli** | Multi-domain online shop: motion-driven landing pages per domain with language switch, backend and admin panel isolated from the public network | React, Node.js, Docker |
+| **Local LLM tooling** | Running and routing local models (llama.cpp, Ollama, vLLM), custom frontends around them, file-by-file project generation with a local 28B model | Python |
 
 ## How I work with AI
 
@@ -49,5 +53,7 @@ Three landing pages built from a visual direction: glassmorphism, bento grids, s
 
 ## Contact
 
-[![GitHub](https://img.shields.io/badge/GitHub-protocol--0dey-181717?style=flat-square&logo=github)](https://github.com/protocol-0dey)
-<!-- Add your Telegram: [![Telegram](https://img.shields.io/badge/Telegram-@your_nick-26A5E4?style=flat-square&logo=telegram&logoColor=white)](https://t.me/your_nick) -->
+[![GitHub](https://img.shields.io/badge/GitHub-protocol--0dey-181717?style=for-the-badge&logo=github)](https://github.com/protocol-0dey)
+<!-- Add your Telegram: [![Telegram](https://img.shields.io/badge/Telegram-@your_nick-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/your_nick) -->
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:7c3aed,100:1e1b4b&height=90&section=footer" alt="" width="100%" />
