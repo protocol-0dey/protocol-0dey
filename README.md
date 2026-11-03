@@ -47,6 +47,17 @@ Private projects, available to walk through on a call.
 
 ## How I work with AI
 
+<p>
+  <img src="https://img.shields.io/badge/Gemini-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white" alt="Gemini" />
+  <img src="https://img.shields.io/badge/GPT-412991?style=for-the-badge&logo=openai&logoColor=white" alt="GPT" />
+  <img src="https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude" />
+  <img src="https://img.shields.io/badge/Grok-000000?style=for-the-badge&logo=x&logoColor=white" alt="Grok" />
+  <img src="https://img.shields.io/badge/Qwen3.8%2027B-local-615CED?style=for-the-badge" alt="Qwen3.8 27B, local" />
+  <img src="https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama" />
+</p>
+
+I work with several models and pick them per task: cloud models (Gemini, GPT, Claude, Grok and others) for fast drafting, review and research, and a local Qwen3.8 27B for private code and file-by-file generation.
+
 - AI assistants draft code, tests and documentation, and help me compare options quickly.
 - Nothing is merged unread. Every change goes through linting, type checking, tests and a manual run in the browser on desktop and mobile.
 - Architecture and trade-offs are my decisions, and I can explain the code in my repositories.
