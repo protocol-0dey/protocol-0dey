@@ -14,26 +14,38 @@
 
 ## Stack
 
-<p align="center">
-  <a href="https://en.wikipedia.org/wiki/React_(JavaScript_library)"><img src="https://skillicons.dev/icons?i=react&theme=dark" width="48" height="48" alt="React" title="React" /></a>
-  <a href="https://en.wikipedia.org/wiki/TypeScript"><img src="https://skillicons.dev/icons?i=ts&theme=dark" width="48" height="48" alt="TypeScript" title="TypeScript" /></a>
-  <a href="https://en.wikipedia.org/wiki/JavaScript"><img src="https://skillicons.dev/icons?i=js&theme=dark" width="48" height="48" alt="JavaScript" title="JavaScript" /></a>
-  <a href="https://en.wikipedia.org/wiki/HTML"><img src="https://skillicons.dev/icons?i=html&theme=dark" width="48" height="48" alt="HTML" title="HTML" /></a>
-  <a href="https://en.wikipedia.org/wiki/CSS"><img src="https://skillicons.dev/icons?i=css&theme=dark" width="48" height="48" alt="CSS" title="CSS" /></a>
-  <a href="https://en.wikipedia.org/wiki/Tailwind_CSS"><img src="https://skillicons.dev/icons?i=tailwind&theme=dark" width="48" height="48" alt="Tailwind CSS" title="Tailwind CSS" /></a>
-  <a href="https://en.wikipedia.org/wiki/Vite_(software)"><img src="https://skillicons.dev/icons?i=vite&theme=dark" width="48" height="48" alt="Vite" title="Vite" /></a>
-  <a href="https://en.wikipedia.org/wiki/Node.js"><img src="https://skillicons.dev/icons?i=nodejs&theme=dark" width="48" height="48" alt="Node.js" title="Node.js" /></a>
-  <a href="https://en.wikipedia.org/wiki/Express.js"><img src="https://skillicons.dev/icons?i=express&theme=dark" width="48" height="48" alt="Express" title="Express" /></a>
-  <a href="https://en.wikipedia.org/wiki/NestJS"><img src="https://skillicons.dev/icons?i=nestjs&theme=dark" width="48" height="48" alt="NestJS" title="NestJS" /></a>
-  <a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img src="https://skillicons.dev/icons?i=python&theme=dark" width="48" height="48" alt="Python" title="Python" /></a>
-  <a href="https://en.wikipedia.org/wiki/FastAPI"><img src="https://skillicons.dev/icons?i=fastapi&theme=dark" width="48" height="48" alt="FastAPI" title="FastAPI" /></a>
-  <a href="https://en.wikipedia.org/wiki/Electron_(software_framework)"><img src="https://skillicons.dev/icons?i=electron&theme=dark" width="48" height="48" alt="Electron" title="Electron" /></a>
-  <a href="https://en.wikipedia.org/wiki/Docker_(software)"><img src="https://skillicons.dev/icons?i=docker&theme=dark" width="48" height="48" alt="Docker" title="Docker" /></a>
-  <a href="https://en.wikipedia.org/wiki/Git"><img src="https://skillicons.dev/icons?i=git&theme=dark" width="48" height="48" alt="Git" title="Git" /></a>
-  <a href="https://en.wikipedia.org/wiki/GitHub"><img src="https://skillicons.dev/icons?i=github&theme=dark" width="48" height="48" alt="GitHub" title="GitHub" /></a>
-  <a href="https://en.wikipedia.org/wiki/Visual_Studio_Code"><img src="https://skillicons.dev/icons?i=vscode&theme=dark" width="48" height="48" alt="VS Code" title="VS Code" /></a>
-  <a href="https://en.wikipedia.org/wiki/Figma"><img src="https://skillicons.dev/icons?i=figma&theme=dark" width="48" height="48" alt="Figma" title="Figma" /></a>
-  <a href="https://en.wikipedia.org/wiki/Linux"><img src="https://skillicons.dev/icons?i=linux&theme=dark" width="48" height="48" alt="Linux" title="Linux" /></a>
+**Frontend**
+
+<p>
+  <a href="https://en.wikipedia.org/wiki/React_(JavaScript_library)"><img src="https://skillicons.dev/icons?i=react&theme=dark" width="64" height="64" alt="React" title="React" /></a>
+  <a href="https://en.wikipedia.org/wiki/TypeScript"><img src="https://skillicons.dev/icons?i=ts&theme=dark" width="64" height="64" alt="TypeScript" title="TypeScript" /></a>
+  <a href="https://en.wikipedia.org/wiki/JavaScript"><img src="https://skillicons.dev/icons?i=js&theme=dark" width="64" height="64" alt="JavaScript" title="JavaScript" /></a>
+  <a href="https://en.wikipedia.org/wiki/HTML5"><img src="https://skillicons.dev/icons?i=html&theme=dark" width="64" height="64" alt="HTML" title="HTML" /></a>
+  <a href="https://en.wikipedia.org/wiki/CSS"><img src="https://skillicons.dev/icons?i=css&theme=dark" width="64" height="64" alt="CSS" title="CSS" /></a>
+  <a href="https://en.wikipedia.org/wiki/Tailwind_CSS"><img src="https://skillicons.dev/icons?i=tailwind&theme=dark" width="64" height="64" alt="Tailwind CSS" title="Tailwind CSS" /></a>
+  <a href="https://en.wikipedia.org/wiki/Vite_(software)"><img src="https://skillicons.dev/icons?i=vite&theme=dark" width="64" height="64" alt="Vite" title="Vite" /></a>
+</p>
+
+**Backend and AI tooling**
+
+<p>
+  <a href="https://en.wikipedia.org/wiki/Node.js"><img src="https://skillicons.dev/icons?i=nodejs&theme=dark" width="64" height="64" alt="Node.js" title="Node.js" /></a>
+  <a href="https://en.wikipedia.org/wiki/Express.js"><img src="https://skillicons.dev/icons?i=express&theme=dark" width="64" height="64" alt="Express" title="Express" /></a>
+  <a href="https://en.wikipedia.org/wiki/NestJS"><img src="https://skillicons.dev/icons?i=nestjs&theme=dark" width="64" height="64" alt="NestJS" title="NestJS" /></a>
+  <a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img src="https://skillicons.dev/icons?i=python&theme=dark" width="64" height="64" alt="Python" title="Python" /></a>
+  <a href="https://en.wikipedia.org/wiki/FastAPI"><img src="https://skillicons.dev/icons?i=fastapi&theme=dark" width="64" height="64" alt="FastAPI" title="FastAPI" /></a>
+  <a href="https://en.wikipedia.org/wiki/Electron_(software_framework)"><img src="https://skillicons.dev/icons?i=electron&theme=dark" width="64" height="64" alt="Electron" title="Electron" /></a>
+  <a href="https://en.wikipedia.org/wiki/Docker_(software)"><img src="https://skillicons.dev/icons?i=docker&theme=dark" width="64" height="64" alt="Docker" title="Docker" /></a>
+</p>
+
+**Tools**
+
+<p>
+  <a href="https://en.wikipedia.org/wiki/Git"><img src="https://skillicons.dev/icons?i=git&theme=dark" width="64" height="64" alt="Git" title="Git" /></a>
+  <a href="https://en.wikipedia.org/wiki/GitHub"><img src="https://skillicons.dev/icons?i=github&theme=dark" width="64" height="64" alt="GitHub" title="GitHub" /></a>
+  <a href="https://en.wikipedia.org/wiki/Visual_Studio_Code"><img src="https://skillicons.dev/icons?i=vscode&theme=dark" width="64" height="64" alt="VS Code" title="VS Code" /></a>
+  <a href="https://en.wikipedia.org/wiki/Figma"><img src="https://skillicons.dev/icons?i=figma&theme=dark" width="64" height="64" alt="Figma" title="Figma" /></a>
+  <a href="https://en.wikipedia.org/wiki/Linux"><img src="https://skillicons.dev/icons?i=linux&theme=dark" width="64" height="64" alt="Linux" title="Linux" /></a>
 </p>
 
 ## Featured work
