@@ -56,6 +56,18 @@ A production-style SPA: landing page with a one-click demo, light and dark theme
 
 `React 19` `TypeScript strict` `Zustand` `dnd-kit` `React Router 7` `CSS Modules` `Vitest` `Playwright` `GitHub Actions`
 
+### [Pulse](pulse/) · SaaS analytics dashboard
+
+KPI cards, a hand-written SVG revenue chart, and a customer table with search, sorting, filtering, pagination and a details drawer (bottom sheet on phones). Optimistic updates with rollback, loading, empty and error states, light and dark themes. A mock API with latency sits behind one module, so a real backend plugs in without touching the UI.
+
+`React 19` `TypeScript strict` `Vitest` `Plain CSS tokens`
+
+### [Launchpad](launchpad/) · Pricing page and signup flow
+
+Pricing with a monthly / yearly toggle and seat-based totals, FAQ accordion, and a three-step signup in an accessible modal: per-step validation, focus management, server-side field errors. Pricing rules and validation are pure, tested functions.
+
+`React 19` `TypeScript strict` `Vitest` `Accessibility`
+
 ### [Concept landings](landings/) · Nexus, AquaGlow, Strato
 
 Three landing pages built from a visual direction: glassmorphism, bento grids, scroll reveal. Mobile navigation, validated modal forms, keyboard and screen-reader support, one `submitLead()` function to swap for a real request. Brands and data are fictional.
