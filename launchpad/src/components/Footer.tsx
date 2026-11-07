@@ -1,9 +1,9 @@
 export function Footer({ onStart }: { onStart: () => void }) {
   return (
     <>
-      <section className="cta">
+      <section className="cta" aria-labelledby="cta-title">
         <div className="container cta__inner">
-          <h2>Ready to get your team on the same page?</h2>
+          <h2 id="cta-title">Ready to get your team on the same page?</h2>
           <button type="button" className="btn btn--lg" onClick={onStart}>
             Start free trial
           </button>

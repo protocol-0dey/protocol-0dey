@@ -23,9 +23,9 @@
   --muted: #5d6679;
   --accent: #4f5bd5;
   --accent-contrast: #ffffff;
-  --good: #0f9d6b;
-  --bad: #d64545;
-  --warn: #b7791f;
+  --good: #066a45;
+  --bad: #c03636;
+  --warn: #8a5a00;
   --shadow: 0 10px 30px rgb(30 40 80 / 0.12);
   color-scheme: light;
 }
@@ -229,7 +229,7 @@ select {
   border-radius: 12px;
 }
 .segmented button {
-  min-height: 38px;
+  min-height: 44px;
   padding: 0 14px;
   border: 0;
   border-radius: 9px;
@@ -323,7 +323,7 @@ select {
 }
 .chart__label {
   fill: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
 }
 .chart__line {
   fill: none;

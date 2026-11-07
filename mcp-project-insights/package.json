@@ -1,0 +1,33 @@
+{
+  "name": "mcp-project-insights",
+  "version": "1.0.0",
+  "description": "A read-only MCP server that gives AI assistants a quick, safe overview of a frontend project.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "mcp-project-insights": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "smoke": "node scripts/smoke.mjs",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "prettier": "^3.9.10",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

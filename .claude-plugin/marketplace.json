@@ -1,0 +1,11 @@
+{
+  "name": "aleks-frontend-plugins",
+  "owner": { "name": "Aleks" },
+  "plugins": [
+    {
+      "name": "ai-frontend-skills",
+      "source": "./ai-frontend-skills",
+      "description": "Build from visual references, audit responsiveness and accessibility, and verify AI-written frontend code."
+    }
+  ]
+}

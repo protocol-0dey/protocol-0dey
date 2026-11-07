@@ -1,15 +1,31 @@
-import { useId, useMemo, useState, type PointerEvent } from 'react';
+import { useEffect, useId, useMemo, useRef, useState, type PointerEvent } from 'react';
 import type { SeriesPoint } from '@/data/types';
 import { niceMax } from '@/lib/chart';
 import { formatCurrency, formatShortDate } from '@/lib/format';
 
-const W = 800;
-const H = 280;
+const DEFAULT_WIDTH = 800;
 const PAD = { top: 16, right: 16, bottom: 28, left: 52 };
 
 export function RevenueChart({ series }: { series: SeriesPoint[] }) {
   const gradientId = useId();
   const [hover, setHover] = useState<number | null>(null);
+  const wrapper = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(DEFAULT_WIDTH);
+
+  // Draw in real pixels instead of scaling a fixed viewBox, so axis labels stay readable on phones.
+  useEffect(() => {
+    const node = wrapper.current;
+    if (!node || typeof ResizeObserver === 'undefined') return;
+    const observer = new ResizeObserver(([entry]) => {
+      const next = Math.round(entry?.contentRect.width ?? 0);
+      if (next > 0) setWidth(next);
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const W = Math.max(280, width);
+  const H = W < 560 ? 230 : 280;
 
   const geometry = useMemo(() => {
     const max = niceMax(Math.max(...series.map((p) => p.revenue)));
@@ -24,10 +40,10 @@ export function RevenueChart({ series }: { series: SeriesPoint[] }) {
     const area = `${line} L${x(series.length - 1).toFixed(1)},${PAD.top + innerH} L${x(0).toFixed(1)},${PAD.top + innerH} Z`;
     const ticks = [0, 0.25, 0.5, 0.75, 1].map((t) => ({ value: max * t, y: y(max * t) }));
     return { x, y, line, area, ticks, innerW };
-  }, [series]);
+  }, [series, W, H]);
 
   const total = series.reduce((sum, p) => sum + p.revenue, 0);
-  const labelEvery = Math.ceil(series.length / 6);
+  const labelEvery = Math.ceil(series.length / Math.max(2, Math.floor(W / 100)));
 
   function handleMove(event: PointerEvent<SVGSVGElement>) {
     const box = event.currentTarget.getBoundingClientRect();
@@ -40,7 +56,7 @@ export function RevenueChart({ series }: { series: SeriesPoint[] }) {
   const active = hover === null ? null : series[hover];
 
   return (
-    <div className="chart">
+    <div className="chart" ref={wrapper}>
       <svg
         viewBox={`0 0 ${W} ${H}`}
         role="img"

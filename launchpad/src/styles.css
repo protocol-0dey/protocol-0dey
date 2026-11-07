@@ -21,12 +21,12 @@
   --border: #dbe4ec;
   --text: #0f1b2a;
   --muted: #55657a;
-  --accent: #0d9488;
+  --accent: #0f766e;
   --accent-contrast: #ffffff;
-  --danger: #d6336c;
-  --good: #0f9d6b;
+  --danger: #c2255c;
+  --good: #087a53;
   --shadow: 0 24px 60px rgb(20 50 80 / 0.16);
-  --glow: radial-gradient(60% 60% at 50% 0%, rgb(13 148 136 / 0.14), transparent 70%);
+  --glow: radial-gradient(60% 60% at 50% 0%, rgb(15 118 110 / 0.14), transparent 70%);
   color-scheme: light;
 }
 
@@ -191,6 +191,7 @@ select {
 .logo {
   display: inline-flex;
   align-items: center;
+  min-height: 44px;
   gap: 10px;
   font-size: 19px;
   font-weight: 800;
@@ -210,6 +211,11 @@ select {
   margin-left: 32px;
 }
 .header__nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   color: var(--muted);
   font-weight: 500;
   text-decoration: none;
@@ -348,7 +354,7 @@ select {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-height: 42px;
+  min-height: 44px;
   padding: 0 18px;
   border: 0;
   border-radius: 10px;

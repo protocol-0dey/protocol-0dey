@@ -1,0 +1,15 @@
+{
+  "name": "ai-frontend-skills",
+  "version": "1.0.0",
+  "description": "Skills and scripts for building interfaces from visual references, auditing responsiveness and accessibility, and verifying AI-written frontend code.",
+  "author": { "name": "Aleks" },
+  "license": "MIT",
+  "keywords": [
+    "frontend",
+    "react",
+    "accessibility",
+    "responsive",
+    "code-review",
+    "playwright"
+  ]
+}

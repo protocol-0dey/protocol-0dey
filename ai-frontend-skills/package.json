@@ -1,0 +1,18 @@
+{
+  "name": "ai-frontend-skills",
+  "version": "1.0.0",
+  "description": "Claude Code plugin: skills and scripts to build, audit and verify frontend work.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test \"scripts/*.test.mjs\"",
+    "check": "node --check scripts/responsive-check.mjs && node --check scripts/a11y-scan.mjs && node --check scripts/visual-diff.mjs && node --check scripts/check-deps-exist.mjs"
+  },
+  "dependencies": {
+    "axe-core": "^4.10.0",
+    "pixelmatch": "^7.1.0",
+    "playwright-core": "^1.50.0",
+    "pngjs": "^7.0.0"
+  }
+}

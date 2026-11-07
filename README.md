@@ -68,6 +68,18 @@ Pricing with a monthly / yearly toggle and seat-based totals, FAQ accordion, and
 
 `React 19` `TypeScript strict` `Vitest` `Accessibility`
 
+### [ai-frontend-skills](ai-frontend-skills/) · Claude Code plugin
+
+Four skills, a slash command and four scripts: build a UI from a visual reference and measure it with a pixel diff, audit responsiveness in a real browser, run an axe-core accessibility audit in light and dark themes, and verify AI-written code (including a check that every dependency exists on npm). Run against the apps in this repo, it found and helped fix real defects.
+
+`Claude Code plugin` `Playwright` `axe-core` `Node.js`
+
+### [mcp-project-insights](mcp-project-insights/) · MCP server
+
+A read-only Model Context Protocol server that gives an AI assistant facts about a frontend project: stack and tooling, TODOs, dependency hygiene and React component size. Path-restricted to one root (including symlinks), bounded work, no network or writes. Tested through the protocol with an in-memory client and over stdio.
+
+`TypeScript` `MCP SDK` `Zod` `Vitest`
+
 ### [Concept landings](landings/) · Nexus, AquaGlow, Strato
 
 Three landing pages built from a visual direction: glassmorphism, bento grids, scroll reveal. Mobile navigation, validated modal forms, keyboard and screen-reader support, one `submitLead()` function to swap for a real request. Brands and data are fictional.
