@@ -10,6 +10,10 @@
 
 **I build interfaces from visual references and take them all the way to working UI:<br>responsive, accessible, with real states, and an API layer ready for a backend.**
 
+[![Live portfolio](https://img.shields.io/badge/%E2%86%97%20Live%20portfolio-protocol--0dey.github.io-a855f7?style=for-the-badge)](https://protocol-0dey.github.io/protocol-0dey/)
+
+<a href="https://protocol-0dey.github.io/protocol-0dey/"><img src="docs/screens/portfolio.jpg" alt="Portfolio site: hero and project grid" width="100%" /></a>
+
 </div>
 
 ## Stack
@@ -50,19 +54,19 @@
 
 ## Featured work
 
-### [TaskFlow](taskflow/) · Kanban task manager
+### [TaskFlow](taskflow/) · Kanban task manager · [live demo ↗](https://protocol-0dey.github.io/protocol-0dey/taskflow/)
 
 A production-style SPA: landing page with a one-click demo, light and dark themes, drag-and-drop with mouse, touch and keyboard, optimistic updates with rollback, realtime sync across tabs. The mock API switches to a real HTTP client through one environment variable (contract in [API.md](taskflow/docs/API.md)).
 
 `React 19` `TypeScript strict` `Zustand` `dnd-kit` `React Router 7` `CSS Modules` `Vitest` `Playwright` `GitHub Actions`
 
-### [Pulse](pulse/) · SaaS analytics dashboard
+### [Pulse](pulse/) · SaaS analytics dashboard · [live demo ↗](https://protocol-0dey.github.io/protocol-0dey/pulse/)
 
 KPI cards, a hand-written SVG revenue chart, and a customer table with search, sorting, filtering, pagination and a details drawer (bottom sheet on phones). Optimistic updates with rollback, loading, empty and error states, light and dark themes. A mock API with latency sits behind one module, so a real backend plugs in without touching the UI.
 
 `React 19` `TypeScript strict` `Vitest` `Plain CSS tokens`
 
-### [Launchpad](launchpad/) · Pricing page and signup flow
+### [Launchpad](launchpad/) · Pricing page and signup flow · [live demo ↗](https://protocol-0dey.github.io/protocol-0dey/launchpad/)
 
 Pricing with a monthly / yearly toggle and seat-based totals, FAQ accordion, and a three-step signup in an accessible modal: per-step validation, focus management, server-side field errors. Pricing rules and validation are pure, tested functions.
 
@@ -80,11 +84,34 @@ A read-only Model Context Protocol server that gives an AI assistant facts about
 
 `TypeScript` `MCP SDK` `Zod` `Vitest`
 
-### [Concept landings](landings/) · Nexus, AquaGlow, Strato
+## Reference sites
 
-Three landing pages built from a visual direction: glassmorphism, bento grids, scroll reveal. Mobile navigation, validated modal forms, keyboard and screen-reader support, one `submitLead()` function to swap for a real request. Brands and data are fictional.
+Ten landing pages, each in its own visual language. Click a screenshot for the live page. Brands are fictional.
 
-`HTML` `Tailwind CSS` `Vanilla JS`
+<table>
+<tr>
+<td width="50%"><a href="https://protocol-0dey.github.io/protocol-0dey/references/vector/"><img src="docs/screens/vector.jpg" alt="Vector" /></a><br><b><a href="references/vector/">Vector</a></b> · dark AI dev-tool SaaS: typing terminal, spotlight bento, pricing toggle</td>
+<td width="50%"><a href="https://protocol-0dey.github.io/protocol-0dey/references/nova/"><img src="docs/screens/nova.jpg" alt="Nova One" /></a><br><b><a href="references/nova/">Nova One</a></b> · glass product page: colour picker re-themes the page, 3D parallax</td>
+</tr>
+<tr>
+<td><a href="https://protocol-0dey.github.io/protocol-0dey/landings/webtactics_agency.html"><img src="docs/screens/webtactics.jpg" alt="WebTactics" /></a><br><b><a href="landings/webtactics_agency.html">WebTactics</a></b> · digital agency: bento services, 3D showcase, animated filter</td>
+<td><a href="https://protocol-0dey.github.io/protocol-0dey/landings/aura_xr.html"><img src="docs/screens/aura.jpg" alt="Aura XR" /></a><br><b><a href="landings/aura_xr.html">Aura XR</a></b> · spatial headset launch: floating device, gradient type</td>
+</tr>
+<tr>
+<td><a href="https://protocol-0dey.github.io/protocol-0dey/references/halo/"><img src="docs/screens/halo.jpg" alt="Halo" /></a><br><b><a href="references/halo/">Halo</a></b> · fintech app: gradient mesh, phone mockup, savings calculator</td>
+<td><a href="https://protocol-0dey.github.io/protocol-0dey/references/ember/"><img src="docs/screens/ember.jpg" alt="Ember" /></a><br><b><a href="references/ember/">Ember</a></b> · coffee storefront: filters, cart drawer, subscription builder</td>
+</tr>
+<tr>
+<td><a href="https://protocol-0dey.github.io/protocol-0dey/references/monolith/"><img src="docs/screens/monolith.jpg" alt="Monolith" /></a><br><b><a href="references/monolith/">Monolith</a></b> · editorial architecture studio: cursor-following previews</td>
+<td><a href="https://protocol-0dey.github.io/protocol-0dey/landings/strato_aviation.html"><img src="docs/screens/strato.jpg" alt="Strato" /></a><br><b><a href="landings/strato_aviation.html">Strato</a></b> · private aviation: glass panels, booking modal</td>
+</tr>
+<tr>
+<td><a href="https://protocol-0dey.github.io/protocol-0dey/landings/nexus_energy_landing.html"><img src="docs/screens/nexus.jpg" alt="Nexus" /></a><br><b><a href="landings/nexus_energy_landing.html">Nexus</a></b> · neon energy drink: bento grid, order modal</td>
+<td><a href="https://protocol-0dey.github.io/protocol-0dey/landings/premium_detailing_landing_page.html"><img src="docs/screens/aquaglow.jpg" alt="AquaGlow" /></a><br><b><a href="landings/premium_detailing_landing_page.html">AquaGlow</a></b> · car detailing studio: price list, booking modal</td>
+</tr>
+</table>
+
+Every page has a mobile layout and menu, visible focus states and reduced-motion support, and was checked in a real browser at 1440 px and 390 px. Hand-written CSS ([references/](references/)) and Tailwind ([landings/](landings/)).
 
 ## Larger systems I have built
 

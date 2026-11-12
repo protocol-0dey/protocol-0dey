@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aleks — Frontend Portfolio</title>
+  <meta name="description" content="Frontend developer: React + TypeScript apps, landing pages built from visual references, and AI tooling." />
+  <meta property="og:title" content="Aleks — Frontend Portfolio" />
+  <meta property="og:description" content="React + TypeScript apps, landing pages from visual references, AI tooling." />
+  <meta property="og:image" content="screens/vector.jpg" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%237c3aed'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-weight='700' font-size='17' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #08070d;
+      --glass: rgba(255,255,255,.035);
+      --glass-b: rgba(255,255,255,.08);
+      --text: #f4f3f8;
+      --muted: #9b98ab;
+      --dim: #6b6880;
+      --violet: #a855f7;
+      --indigo: #7c3aed;
+      --cyan: #22d3ee;
+      --lime: #bef264;
+      --display: "Space Grotesk", sans-serif;
+      --sans: "Inter", system-ui, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 8px; }
+    .wrap { max-width: 1240px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+    .skip { position: absolute; left: -999px; top: 8px; background: #fff; color: #000; padding: 8px 12px; z-index: 99; }
+    .skip:focus { left: 8px; }
+
+    .glass { background: var(--glass); border: 1px solid var(--glass-b); border-radius: 22px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); position: relative; overflow: hidden; isolation: isolate; }
+    .glass::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .4s; pointer-events: none;
+      background: radial-gradient(520px circle at var(--mx, -500px) var(--my, -500px), rgba(168,85,247,.16), transparent 45%); }
+    .glass:hover::before { opacity: 1; }
+    .grad { background: linear-gradient(110deg, #e879f9, var(--violet) 40%, var(--cyan) 80%, #e879f9); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 7s linear infinite; }
+    @keyframes shine { to { background-position: 200% center; } }
+
+    /* Nav */
+    .nav { position: fixed; inset: 0 0 auto; z-index: 50; background: rgba(8,7,13,.6); backdrop-filter: blur(18px); border-bottom: 1px solid var(--glass-b); }
+    .nav .wrap { height: 64px; display: flex; align-items: center; gap: 28px; }
+    .logo { display: flex; align-items: center; gap: 10px; font: 700 18px var(--display); }
+    .logo b { width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; background: linear-gradient(135deg, var(--indigo), var(--violet)); font-size: 16px; }
+    .links { display: flex; gap: 26px; font-size: 14px; color: var(--muted); }
+    .links a:hover { color: var(--text); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 18px; border-radius: 12px; font: 600 14px/1 var(--sans); border: 1px solid var(--glass-b); background: var(--glass); color: var(--text); cursor: pointer; transition: transform .2s, background .2s, border-color .2s; white-space: nowrap; }
+    .btn:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.18); }
+    .btn-w { background: var(--text); color: #0a0910; border-color: var(--text); }
+    .nav .btn { margin-left: auto; }
+    .burger { display: none; }
+
+    /* Hero */
+    .hero { min-height: 100svh; display: flex; align-items: center; padding-top: 110px; padding-bottom: 60px; position: relative; }
+    .bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+    .bg .grid { position: absolute; inset: 0; background-size: 46px 46px;
+      background-image: linear-gradient(to right, rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.035) 1px, transparent 1px);
+      mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 70%); }
+    .bg .o1, .bg .o2 { position: absolute; border-radius: 50%; filter: blur(120px); }
+    .bg .o1 { width: 620px; height: 620px; background: rgba(124,58,237,.45); left: 50%; top: -12%; transform: translateX(-50%); animation: breathe 9s ease-in-out infinite; }
+    .bg .o2 { width: 420px; height: 420px; background: rgba(34,211,238,.18); right: 0; bottom: 0; animation: breathe 11s ease-in-out infinite reverse; }
+    @keyframes breathe { 50% { opacity: .55; transform: translateX(-50%) scale(1.1); } }
+    .status { display: inline-flex; align-items: center; gap: 10px; padding: 7px 16px 7px 12px; border-radius: 999px; font-size: 13.5px; color: #d8d5e4; }
+    .status i { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 4px rgba(190,242,100,.15); animation: ping 2s infinite; }
+    @keyframes ping { 50% { box-shadow: 0 0 0 8px rgba(190,242,100,0); } }
+    h1 { font: 700 clamp(46px, 8.6vw, 116px)/.92 var(--display); letter-spacing: -0.05em; margin: 26px 0 0; }
+    .hero p.lead { font-size: clamp(17px, 1.7vw, 21px); color: var(--muted); max-width: 54ch; margin: 26px 0 0; }
+    .hero .cta { display: flex; gap: 12px; margin-top: 34px; flex-wrap: wrap; }
+    .hero .cta .btn { height: 50px; padding: 0 24px; font-size: 15px; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 64px; }
+    .stats .glass { padding: 20px 22px; }
+    .stats b { display: block; font: 700 clamp(28px, 3.4vw, 40px)/1 var(--display); letter-spacing: -0.04em; }
+    .stats span { color: var(--muted); font-size: 14px; }
+
+    section { padding-block: clamp(72px, 10vw, 120px); }
+    .kicker { font: 500 13px var(--mono); color: var(--cyan); }
+    h2 { font: 700 clamp(34px, 5vw, 60px)/1 var(--display); letter-spacing: -0.04em; margin: 12px 0 0; }
+    .head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 36px; }
+    .head p { color: var(--muted); max-width: 46ch; margin: 14px 0 0; }
+
+    /* Filter */
+    .tabs { display: inline-flex; gap: 4px; padding: 4px; border-radius: 14px; }
+    .tabs button { all: unset; cursor: pointer; padding: 9px 16px; border-radius: 10px; font-size: 14px; color: var(--muted); transition: background .2s, color .2s; }
+    .tabs button[aria-pressed="true"] { background: rgba(255,255,255,.1); color: var(--text); }
+    .tabs button:focus-visible { outline: 2px solid var(--cyan); }
+    .tabs small { color: var(--dim); margin-left: 4px; }
+
+    /* Work grid */
+    .work { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .proj { display: flex; flex-direction: column; transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .3s; }
+    .proj:hover { transform: translateY(-6px); border-color: rgba(168,85,247,.35); }
+    .proj[hidden] { display: none; }
+    .shot { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--glass-b); background: #111; }
+    .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+    .proj:hover .shot img { transform: scale(1.04); }
+    .shot .m { position: absolute; right: 16px; bottom: -40px; width: 22%; border-radius: 14px; border: 3px solid #0a0910; box-shadow: 0 20px 40px -10px rgba(0,0,0,.7); transition: bottom .5s cubic-bezier(.2,.7,.2,1); }
+    .proj:hover .shot .m { bottom: 14px; }
+    .type { position: absolute; left: 14px; top: 14px; font: 500 12px var(--mono); padding: 5px 10px; border-radius: 8px; background: rgba(8,7,13,.75); backdrop-filter: blur(8px); border: 1px solid var(--glass-b); }
+    .body { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .body h3 { margin: 0; font: 700 24px/1.1 var(--display); letter-spacing: -0.03em; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .body h3 small { font: 400 13px var(--sans); color: var(--dim); letter-spacing: 0; }
+    .body p { margin: 0; color: var(--muted); font-size: 15px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tags span { font: 12px var(--mono); padding: 4px 9px; border-radius: 7px; background: rgba(255,255,255,.05); color: #c8c5d6; }
+    .acts { display: flex; gap: 8px; margin-top: auto; padding-top: 6px; flex-wrap: wrap; }
+    .acts .btn { height: 38px; font-size: 13.5px; }
+
+    /* Tools */
+    .tools { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .tool { padding: 28px; }
+    .tool h3 { margin: 0 0 8px; font: 700 22px var(--display); letter-spacing: -0.02em; }
+    .tool p { margin: 0 0 18px; color: var(--muted); }
+    .term { font: 13px/1.8 var(--mono); background: rgba(0,0,0,.35); border: 1px solid var(--glass-b); border-radius: 12px; padding: 14px 16px; margin-bottom: 18px; color: #c8c5d6; overflow-x: auto; white-space: pre; }
+    .term .c { color: var(--dim); } .term .g { color: var(--lime); } .term .v { color: #d8b4fe; }
+
+    /* Process */
+    .process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: s; }
+    .process .glass { padding: 24px; counter-increment: s; }
+    .process .glass::after { content: "0" counter(s); position: absolute; right: 18px; top: 14px; font: 700 40px var(--display); color: rgba(255,255,255,.05); }
+    .process h3 { margin: 0 0 6px; font: 700 18px var(--display); }
+    .process p { margin: 0; color: var(--muted); font-size: 14.5px; }
+
+    /* Contact */
+    .contact { text-align: center; padding: clamp(48px, 8vw, 96px) 24px; }
+    .contact h2 { max-width: 16ch; margin-inline: auto; }
+    .contact p { color: var(--muted); margin: 16px auto 30px; max-width: 46ch; }
+    .contact .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    footer { border-top: 1px solid var(--glass-b); padding-block: 28px; color: var(--dim); font-size: 13px; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+    .rv { opacity: 0; transform: translateY(30px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+    .rv.in { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .links { display: none; }
+      .burger { display: inline-flex; }
+      .nav .btn-w { margin-left: auto; }
+      .nav.open .links { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; gap: 0; padding: 8px 16px 16px; background: #0b0a12; border-bottom: 1px solid var(--glass-b); font-size: 18px; }
+      .nav.open .links a { padding: 12px 0; }
+      .work, .tools { grid-template-columns: 1fr; }
+      .stats, .process { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .nav .btn-w { display: none; }
+      .burger { margin-left: auto; }
+      .tabs { display: flex; width: 100%; }
+      .tabs button { flex: 1; text-align: center; padding: 9px 6px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .rv { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#work">Skip to projects</a>
+  <header class="nav">
+    <div class="wrap">
+      <a class="logo" href="#"><b aria-hidden="true">A</b>Aleks</a>
+      <nav class="links" id="links" aria-label="Main">
+        <a href="#work">Work</a><a href="#tools">AI tooling</a><a href="#process">Process</a><a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-w" href="#contact">Hire me</a>
+      <button class="btn burger" aria-expanded="false" aria-controls="links" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="bg" aria-hidden="true"><div class="grid"></div><div class="o1"></div><div class="o2"></div></div>
+      <div class="wrap">
+        <span class="status glass rv"><i aria-hidden="true"></i>Open to frontend roles &amp; freelance</span>
+        <h1 class="rv">I turn references<br />into <span class="grad">working UI.</span></h1>
+        <p class="lead rv">Frontend developer, React + TypeScript. I take a visual direction all the way to a responsive, accessible interface with real states and an API layer ready for a backend.</p>
+        <div class="cta rv">
+          <a class="btn btn-w" href="#work">See the work ↓</a>
+          <a class="btn" href="https://github.com/protocol-0dey/protocol-0dey">GitHub repository</a>
+        </div>
+        <div class="stats">
+          <div class="glass rv"><b data-count="3">0</b><span>production-style React apps</span></div>
+          <div class="glass rv"><b data-count="10">0</b><span>landing pages from references</span></div>
+          <div class="glass rv"><b data-count="2">0</b><span>AI dev tools (MCP + plugin)</span></div>
+          <div class="glass rv"><b>CI</b><span>lint · types · tests · e2e</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="work" class="wrap">
+      <div class="head">
+        <div>
+          <span class="kicker rv">// selected work</span>
+          <h2 class="rv">Projects</h2>
+          <p class="rv">Every card opens a live build. Brands in the landing pages are fictional; the code is mine.</p>
+        </div>
+        <div class="tabs glass rv" role="group" aria-label="Filter projects">
+          <button type="button" data-f="all" aria-pressed="true">All <small id="n-all"></small></button>
+          <button type="button" data-f="app" aria-pressed="false">Apps <small id="n-app"></small></button>
+          <button type="button" data-f="landing" aria-pressed="false">Landings <small id="n-landing"></small></button>
+        </div>
+      </div>
+      <div class="work" id="grid"></div>
+      <p id="live" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></p>
+    </section>
+
+    <section id="tools" class="wrap">
+      <div class="head"><div><span class="kicker rv">// ai tooling</span><h2 class="rv">Tools I built for myself</h2><p class="rv">How I keep AI-assisted code honest: measured against a reference, audited in a real browser, and checked before it is merged.</p></div></div>
+      <div class="tools">
+        <article class="glass tool rv">
+          <h3>ai-frontend-skills</h3>
+          <p>Claude Code plugin: four skills, a slash command and scripts for pixel-diffing a build against its reference, responsive and axe-core audits, and verifying that every dependency an AI suggested actually exists.</p>
+          <div class="term"><span class="c">$</span> /audit-ui http://localhost:5173
+<span class="c">→ responsive</span> 6 viewports <span class="g">✓ no overflow</span>
+<span class="c">→ a11y</span> light + dark <span class="g">✓ 0 serious</span>
+<span class="c">→ deps</span> 14 packages <span class="g">✓ all on npm</span></div>
+          <div class="tags"><span>Claude Code</span><span>Playwright</span><span>axe-core</span><span>Node.js</span></div>
+          <div class="acts"><a class="btn" href="https://github.com/protocol-0dey/protocol-0dey/tree/main/ai-frontend-skills">Code ↗</a></div>
+        </article>
+        <article class="glass tool rv">
+          <h3>mcp-project-insights</h3>
+          <p>Read-only Model Context Protocol server that gives an assistant facts about a frontend project: stack, TODOs, dependency hygiene and component size. Path-restricted, bounded, no network or writes.</p>
+          <div class="term"><span class="c">tool</span> <span class="v">project_overview</span>
+<span class="c">{</span> "framework": "react 19", "bundler": "vite",
+  "tests": "vitest", "strict": true <span class="c">}</span></div>
+          <div class="tags"><span>TypeScript</span><span>MCP SDK</span><span>Zod</span><span>Vitest</span></div>
+          <div class="acts"><a class="btn" href="https://github.com/protocol-0dey/protocol-0dey/tree/main/mcp-project-insights">Code ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="process" class="wrap">
+      <div class="head"><div><span class="kicker rv">// process</span><h2 class="rv">From reference to release</h2></div></div>
+      <div class="process">
+        <div class="glass rv"><h3>Reference</h3><p>A screenshot, a Figma frame or a mood board. I pin down the type scale, spacing and states first.</p></div>
+        <div class="glass rv"><h3>Build</h3><p>Semantic markup, design tokens, components with loading, empty and error states.</p></div>
+        <div class="glass rv"><h3>Verify</h3><p>Lint, types, unit and e2e tests, then a manual pass on desktop and phone, light and dark.</p></div>
+        <div class="glass rv"><h3>Ship</h3><p>CI on every push, a mock API behind one module so a real backend plugs in cleanly.</p></div>
+      </div>
+    </section>
+
+    <section id="contact" class="wrap">
+      <div class="glass contact rv">
+        <span class="kicker">// contact</span>
+        <h2>Have a reference? Let’s <span class="grad">build it.</span></h2>
+        <p>Open to frontend roles and freelance projects: landing pages, dashboards, SPAs.</p>
+        <div class="cta">
+          <a class="btn btn-w" href="https://github.com/protocol-0dey">GitHub @protocol-0dey</a>
+          <span class="btn" aria-label="WhatsApp: @criata">WhatsApp @criata</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap"><span>© 2026 Aleks · protocol-0dey</span><span>Hand-written HTML &amp; CSS, no framework</span></div></footer>
+
+  <script>
+    const REPO = 'https://github.com/protocol-0dey/protocol-0dey/tree/main/';
+    const projects = [
+      { k: 'app', name: 'TaskFlow', sub: 'Kanban SPA', img: 'taskflow', live: 'taskflow/', code: 'taskflow',
+        d: 'Drag-and-drop with mouse, touch and keyboard, optimistic updates with rollback, realtime sync across tabs, light and dark themes.',
+        t: ['React 19', 'TS strict', 'Zustand', 'dnd-kit', 'Playwright'] },
+      { k: 'app', name: 'Pulse', sub: 'SaaS dashboard', img: 'pulse', live: 'pulse/', code: 'pulse',
+        d: 'KPI cards, hand-written SVG chart, customer table with search, sort, filters, pagination and a details drawer.',
+        t: ['React 19', 'TS strict', 'Vitest', 'CSS tokens'] },
+      { k: 'app', name: 'Launchpad', sub: 'Pricing + signup', img: 'launchpad', live: 'launchpad/', code: 'launchpad',
+        d: 'Monthly / yearly pricing with seat totals and a three-step signup modal with validation and focus management.',
+        t: ['React 19', 'TS strict', 'a11y', 'Vitest'] },
+      { k: 'landing', name: 'Vector', sub: 'AI dev-tool SaaS', img: 'vector', live: 'references/vector/', code: 'references/vector',
+        d: 'Dark SaaS landing: animated review terminal, spotlight bento grid, pricing toggle, FAQ.',
+        t: ['HTML', 'CSS', 'Vanilla JS'] },
+      { k: 'landing', name: 'Nova One', sub: 'Product page', img: 'nova', live: 'references/nova/', code: 'references/nova',
+        d: 'Glassmorphism product page: 3D headphones with parallax, color picker that re-themes the page, ANC mode demo.',
+        t: ['HTML', 'CSS', 'Vanilla JS'] },
+      { k: 'landing', name: 'WebTactics', sub: 'Digital agency', img: 'webtactics', live: 'landings/webtactics_agency.html', code: 'landings',
+        d: 'Agency site with bento services, 3D product showcase, animated portfolio filter and pricing.',
+        t: ['Tailwind', 'Vanilla JS'] },
+      { k: 'landing', name: 'Aura XR', sub: 'Spatial headset', img: 'aura', live: 'landings/aura_xr.html', code: 'landings',
+        d: 'Dark hardware launch page with floating 3D device, gradient type and mouse-spotlight glass cards.',
+        t: ['Tailwind', 'Vanilla JS'] },
+      { k: 'landing', name: 'Halo', sub: 'Fintech app', img: 'halo', live: 'references/halo/', code: 'references/halo',
+        d: 'Gradient mesh hero, CSS phone mockup, 3D tilt card and a live compound-interest calculator.',
+        t: ['HTML', 'CSS', 'Vanilla JS'] },
+      { k: 'landing', name: 'Ember', sub: 'Coffee storefront', img: 'ember', live: 'references/ember/', code: 'references/ember',
+        d: 'Warm e-commerce: roast filters, cart drawer with focus trap and free-shipping progress, subscription builder.',
+        t: ['HTML', 'CSS', 'Vanilla JS'] },
+      { k: 'landing', name: 'Monolith', sub: 'Architecture studio', img: 'monolith', live: 'references/monolith/', code: 'references/monolith',
+        d: 'Editorial serif layout with a project index that previews work under the cursor, marquee and count-ups.',
+        t: ['HTML', 'CSS', 'Vanilla JS'] },
+      { k: 'landing', name: 'Strato', sub: 'Private aviation', img: 'strato', live: 'landings/strato_aviation.html', code: 'landings',
+        d: 'Premium aviation landing with glass panels, fleet showcase and a validated booking modal.',
+        t: ['Tailwind', 'Vanilla JS'] },
+      { k: 'landing', name: 'Nexus', sub: 'Energy drink', img: 'nexus', live: 'landings/nexus_energy_landing.html', code: 'landings',
+        d: 'Neon energy-drink landing: flavour lineup, bento ingredients grid, scroll reveal and a validated order modal.',
+        t: ['Tailwind', 'Vanilla JS'] },
+      { k: 'landing', name: 'AquaGlow', sub: 'Car detailing', img: 'aquaglow', live: 'landings/premium_detailing_landing_page.html', code: 'landings',
+        d: 'Russian-language service landing: price list, before / after, booking modal with validation.',
+        t: ['Tailwind', 'Vanilla JS'] },
+    ];
+
+    const grid = document.getElementById('grid');
+    grid.innerHTML = projects.map(p => `
+      <article class="proj glass rv" data-k="${p.k}">
+        <a class="shot" href="${p.live}" aria-label="Open ${p.name} live" tabindex="-1">
+          <img src="screens/${p.img}.jpg" alt="" loading="lazy" width="1440" height="900" />
+          ${p.k === 'landing' ? `<img class="m" src="screens/${p.img}-m.jpg" alt="" loading="lazy" width="390" height="844" />` : ''}
+          <span class="type">${p.k === 'app' ? 'React app' : 'Landing'}</span>
+        </a>
+        <div class="body">
+          <h3>${p.name}<small>${p.sub}</small></h3>
+          <p>${p.d}</p>
+          <div class="tags">${p.t.map(x => `<span>${x}</span>`).join('')}</div>
+          <div class="acts">
+            <a class="btn btn-w" href="${p.live}">Live demo ↗</a>
+            <a class="btn" href="${REPO + p.code}">Code</a>
+          </div>
+        </div>
+      </article>`).join('');
+
+    const count = k => projects.filter(p => k === 'all' || p.k === k).length;
+    ['all', 'app', 'landing'].forEach(k => { document.getElementById('n-' + k).textContent = count(k); });
+    document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-pressed', x === b));
+      grid.querySelectorAll('.proj').forEach(c => { c.hidden = !(b.dataset.f === 'all' || c.dataset.k === b.dataset.f); c.classList.add('in'); });
+      document.getElementById('live').textContent = `${count(b.dataset.f)} projects shown`;
+    }));
+
+    // Mobile nav
+    const nav = document.querySelector('.nav'), burger = document.querySelector('.burger');
+    const setMenu = o => { nav.classList.toggle('open', o); burger.setAttribute('aria-expanded', o); burger.textContent = o ? '✕' : '☰'; burger.setAttribute('aria-label', o ? 'Close menu' : 'Open menu'); };
+    burger.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+    document.querySelectorAll('.links a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+    addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+    // Spotlight
+    document.addEventListener('pointermove', e => {
+      const c = e.target.closest && e.target.closest('.glass'); if (!c) return;
+      const r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', e.clientX - r.left + 'px'); c.style.setProperty('--my', e.clientY - r.top + 'px');
+    });
+
+    // Reveal + count-up
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-count]').forEach(el => {
+        const to = +el.dataset.count, t0 = performance.now();
+        const step = t => { const k = reduce ? 1 : Math.min((t - t0) / 1200, 1); el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); };
+        requestAnimationFrame(step);
+      });
+      io.unobserve(e.target);
+    }), { threshold: .1 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>

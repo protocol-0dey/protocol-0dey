@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nova One — Headphones</title>
+  <meta name="description" content="Concept product page for fictional headphones: dark glassmorphism, 3D product with color picker, spotlight bento, spec sheet." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050507;
+      --glass: rgba(255,255,255,.035);
+      --glass-b: rgba(255,255,255,.08);
+      --text: #f5f5f7;
+      --muted: #9a9aa6;
+      --accent: #ff6a3d;
+      --accent-2: #ffb347;
+      --c1: #ff6a3d; --c2: #ffb347;
+      --display: "Space Grotesk", sans-serif;
+      --sans: "Inter", system-ui, sans-serif;
+    }
+    body[data-color="ice"] { --c1: #5ad1ff; --c2: #8a7dff; }
+    body[data-color="moss"] { --c1: #a3e635; --c2: #34d399; }
+    body[data-color="mono"] { --c1: #d4d4d8; --c2: #71717a; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--c1); outline-offset: 3px; border-radius: 8px; }
+    .wrap { max-width: 1240px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+    .glass { background: var(--glass); border: 1px solid var(--glass-b); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-radius: 24px; position: relative; overflow: hidden; isolation: isolate; }
+    .glass::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .4s;
+      background: radial-gradient(500px circle at var(--mx, -500px) var(--my, -500px), color-mix(in srgb, var(--c1) 22%, transparent), transparent 45%); }
+    .glass:hover::before { opacity: 1; }
+    .grad { background: linear-gradient(110deg, var(--c1), var(--c2), var(--c1)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 6s linear infinite; }
+    @keyframes shine { to { background-position: 200% center; } }
+
+    /* Nav */
+    .nav { position: fixed; inset: 0 0 auto; z-index: 50; background: rgba(5,5,7,.55); backdrop-filter: blur(18px); border-bottom: 1px solid var(--glass-b); }
+    .nav .wrap { display: flex; align-items: center; height: 68px; gap: 32px; }
+    .logo { font: 700 20px/1 var(--display); letter-spacing: .02em; display: flex; gap: 10px; align-items: center; }
+    .logo i { width: 22px; height: 22px; border-radius: 50%; background: conic-gradient(var(--c1), var(--c2), var(--c1)); box-shadow: 0 0 18px var(--c1); transition: box-shadow .5s; }
+    .nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--muted); }
+    .nav-links a:hover { color: var(--text); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 22px; border-radius: 999px; font: 600 14px/1 var(--sans); border: 1px solid var(--glass-b); background: var(--glass); color: var(--text); cursor: pointer; transition: transform .25s, box-shadow .25s, background .25s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-glow { background: linear-gradient(110deg, var(--c1), var(--c2)); color: #0b0b0d; border: 0; box-shadow: 0 10px 40px -10px var(--c1); }
+    .nav .btn { margin-left: auto; }
+    .burger { display: none; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--glass-b); background: var(--glass); color: var(--text); cursor: pointer; }
+
+    /* Hero */
+    .hero { min-height: 100vh; padding: 120px 0 60px; position: relative; display: flex; align-items: center; overflow: hidden; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(110px); opacity: .55; pointer-events: none; transition: background .8s; }
+    .orb.a { width: 560px; height: 560px; background: var(--c1); left: 50%; top: 18%; transform: translateX(-10%); animation: pulse 8s ease-in-out infinite; }
+    .orb.b { width: 380px; height: 380px; background: var(--c2); left: 8%; bottom: -10%; animation: pulse 10s ease-in-out infinite reverse; }
+    @keyframes pulse { 50% { transform: translateX(-10%) scale(1.15); opacity: .4; } }
+    .grid-bg { position: absolute; inset: 0; pointer-events: none; background-size: 44px 44px;
+      background-image: linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.03) 1px, transparent 1px);
+      mask-image: radial-gradient(circle at 60% 40%, #000, transparent 70%); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; position: relative; }
+    .badge { display: inline-flex; gap: 10px; align-items: center; font-size: 13px; color: var(--muted); padding: 7px 14px; border-radius: 999px; }
+    .badge i { width: 7px; height: 7px; border-radius: 50%; background: var(--c1); box-shadow: 0 0 10px var(--c1); }
+    h1 { font: 700 clamp(52px, 8.5vw, 120px)/.9 var(--display); letter-spacing: -0.05em; margin: 22px 0 0; }
+    .lead { color: var(--muted); font-size: clamp(16px, 1.5vw, 19px); max-width: 44ch; margin: 22px 0 0; }
+    .picker { margin-top: 32px; }
+    .picker p { margin: 0 0 12px; font-size: 13px; color: var(--muted); }
+    .picker p b { color: var(--text); font-weight: 500; }
+    .swatches { display: flex; gap: 12px; }
+    .swatches button { width: 40px; height: 40px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; padding: 3px; background-clip: content-box; transition: transform .2s, border-color .2s; }
+    .swatches button:hover { transform: scale(1.1); }
+    .swatches button[aria-checked="true"] { border-color: var(--text); }
+    .buy { display: flex; gap: 14px; align-items: center; margin-top: 30px; flex-wrap: wrap; }
+    .buy .price { font: 700 30px/1 var(--display); letter-spacing: -0.03em; }
+    .buy .price small { display: block; font: 400 12px var(--sans); color: var(--muted); letter-spacing: 0; margin-top: 4px; }
+
+    /* 3D product */
+    .stage { perspective: 1200px; display: grid; place-items: center; min-height: 520px; }
+    .product { width: min(420px, 82vw); aspect-ratio: 1; position: relative; transform-style: preserve-3d; animation: hover3d 7s ease-in-out infinite; transition: transform .2s ease-out; }
+    @keyframes hover3d { 50% { transform: translateY(-18px) rotateX(8deg) rotateY(-10deg); } }
+    .product svg { width: 100%; height: 100%; filter: drop-shadow(0 40px 60px rgba(0,0,0,.6)); }
+    .product .shadow { position: absolute; left: 15%; right: 15%; bottom: -8%; height: 40px; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--c1) 50%, transparent), transparent); filter: blur(12px); transform: translateZ(-80px); }
+    .ring { position: absolute; inset: 6%; border: 1px dashed rgba(255,255,255,.12); border-radius: 50%; animation: spin 40s linear infinite; }
+    .ring::after { content: ""; position: absolute; top: -4px; left: 50%; width: 8px; height: 8px; border-radius: 50%; background: var(--c1); box-shadow: 0 0 12px var(--c1); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .tag-f { position: absolute; padding: 10px 14px; font-size: 13px; border-radius: 16px; transform: translateZ(60px); }
+    .tag-f b { display: block; font: 700 18px/1.1 var(--display); }
+    .tag-f.t1 { left: -6%; top: 16%; } .tag-f.t2 { right: -8%; bottom: 20%; }
+
+    section { padding-block: clamp(72px, 10vw, 130px); position: relative; }
+    .kicker { font: 500 13px var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--c1); transition: color .5s; }
+    h2 { font: 700 clamp(34px, 5vw, 64px)/1 var(--display); letter-spacing: -0.04em; margin: 12px 0 0; max-width: 16ch; }
+
+    /* Bento */
+    .bento { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(260px, auto); gap: 18px; margin-top: 48px; }
+    .bento .glass { padding: 30px; display: flex; flex-direction: column; justify-content: space-between; }
+    .bento h3 { font: 600 22px/1.2 var(--display); margin: 0 0 8px; letter-spacing: -0.02em; }
+    .bento p { margin: 0; color: var(--muted); font-size: 15px; }
+    .wide { grid-column: span 2; }
+    .wave { display: flex; align-items: center; gap: 4px; height: 90px; }
+    .wave i { flex: 1; border-radius: 3px; background: linear-gradient(var(--c1), var(--c2)); animation: eq 1.2s ease-in-out infinite; transform-origin: center; }
+    @keyframes eq { 50% { transform: scaleY(.25); } }
+    .big { font: 700 clamp(64px, 8vw, 96px)/1 var(--display); letter-spacing: -0.06em; }
+    .anc { display: flex; gap: 6px; margin-top: 4px; }
+    .anc button { flex: 1; padding: 10px; border-radius: 12px; border: 1px solid var(--glass-b); background: transparent; color: var(--muted); font: 500 13px var(--sans); cursor: pointer; transition: all .25s; }
+    .anc button[aria-pressed="true"] { background: var(--text); color: #0b0b0d; }
+    .anc-viz { height: 90px; position: relative; display: grid; place-items: center; }
+    .anc-viz span { position: absolute; border-radius: 50%; border: 1px solid var(--c1); animation: ripple 2.4s ease-out infinite; opacity: 0; }
+    .anc-viz span:nth-child(2) { animation-delay: .8s; } .anc-viz span:nth-child(3) { animation-delay: 1.6s; }
+    @keyframes ripple { from { width: 10px; height: 10px; opacity: .9; } to { width: 180px; height: 180px; opacity: 0; } }
+    .anc-viz[data-mode="off"] span { animation-duration: .9s; border-color: var(--muted); }
+    .anc-viz[data-mode="aware"] span { animation-duration: 1.6s; }
+
+    /* Specs */
+    .specs { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
+    dl { margin: 0; }
+    .spec { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--glass-b); }
+    dt { color: var(--muted); }
+    dd { margin: 0; font-weight: 500; }
+
+    /* CTA */
+    .cta { text-align: center; padding: clamp(56px, 9vw, 110px) 24px; }
+    .cta h2 { margin-inline: auto; }
+    .cta p { color: var(--muted); }
+    .cta .buy { justify-content: center; }
+    footer { border-top: 1px solid var(--glass-b); padding: 28px 0; color: var(--muted); font-size: 13px; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+    .rv { opacity: 0; transform: translateY(36px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+    .rv.in { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .burger { display: inline-grid; place-items: center; }
+      .nav .btn { margin-left: auto; }
+      .nav.open .nav-links { display: flex; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; gap: 0; padding: 8px 16px 18px; background: rgba(5,5,7,.95); border-bottom: 1px solid var(--glass-b); font-size: 18px; }
+      .nav.open .nav-links a { padding: 12px 0; }
+      .hero-grid, .specs { grid-template-columns: 1fr; }
+      .stage { min-height: 400px; order: -1; }
+      .bento { grid-template-columns: 1fr; }
+      .wide { grid-column: auto; }
+      .tag-f.t1 { left: 0; } .tag-f.t2 { right: 0; }
+    }
+    @media (max-width: 480px) { .nav .btn { display: none; } .burger { margin-left: auto; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .rv { opacity: 1; transform: none; }
+    }
+  </style>
+  <style>html,body{overflow-x:clip}</style>
+</head>
+<body data-color="ember">
+  <header class="nav">
+    <div class="wrap">
+      <a class="logo" href="#"><i aria-hidden="true"></i>NOVA</a>
+      <nav class="nav-links" id="nav-links" aria-label="Main">
+        <a href="#sound">Sound</a><a href="#features">Features</a><a href="#specs">Specs</a>
+      </nav>
+      <a class="btn btn-glow" href="#buy">Pre-order</a>
+      <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero" id="sound">
+      <div class="orb a" aria-hidden="true"></div><div class="orb b" aria-hidden="true"></div>
+      <div class="grid-bg" aria-hidden="true"></div>
+      <div class="wrap hero-grid">
+        <div>
+          <span class="badge glass rv"><i></i>Ships March 2027 · Pre-orders open</span>
+          <h1 class="rv">Silence,<br /><span class="grad">tuned.</span></h1>
+          <p class="lead rv">Nova One pairs adaptive noise cancelling with 40 mm graphene drivers and 60 hours of battery. Studio sound that disappears on your head.</p>
+          <div class="picker rv">
+            <p>Finish: <b id="color-name">Ember</b></p>
+            <div class="swatches" role="radiogroup" aria-label="Color">
+              <button role="radio" aria-checked="true" data-color="ember" data-name="Ember" aria-label="Ember" style="background-color:#ff6a3d"></button>
+              <button role="radio" aria-checked="false" data-color="ice" data-name="Glacier" aria-label="Glacier" style="background-color:#5ad1ff"></button>
+              <button role="radio" aria-checked="false" data-color="moss" data-name="Moss" aria-label="Moss" style="background-color:#a3e635"></button>
+              <button role="radio" aria-checked="false" data-color="mono" data-name="Graphite" aria-label="Graphite" style="background-color:#a1a1aa"></button>
+            </div>
+          </div>
+          <div class="buy rv">
+            <div class="price">$349<small>or $29/mo for 12 months</small></div>
+            <a class="btn btn-glow" href="#buy">Pre-order now</a>
+            <a class="btn" href="#features">Explore</a>
+          </div>
+        </div>
+        <div class="stage rv" aria-hidden="true">
+          <div class="product" id="product">
+            <div class="ring"></div>
+            <svg viewBox="0 0 400 400">
+              <defs>
+                <linearGradient id="band" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c1)"/><stop offset="1" style="stop-color:var(--c2)"/></linearGradient>
+                <linearGradient id="cup" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a2a31"/><stop offset="1" stop-color="#0c0c10"/></linearGradient>
+                <radialGradient id="cushion" cx=".4" cy=".35"><stop offset="0" stop-color="#3a3a44"/><stop offset="1" stop-color="#121216"/></radialGradient>
+              </defs>
+              <path d="M88 220 C88 90 312 90 312 220" fill="none" stroke="url(#band)" stroke-width="26" stroke-linecap="round"/>
+              <path d="M98 214 C100 108 300 108 302 214" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="3" stroke-linecap="round"/>
+              <rect x="74" y="196" width="22" height="58" rx="10" fill="#1d1d23"/>
+              <rect x="304" y="196" width="22" height="58" rx="10" fill="#1d1d23"/>
+              <ellipse cx="96" cy="270" rx="58" ry="74" fill="url(#cup)"/>
+              <ellipse cx="96" cy="270" rx="40" ry="56" fill="url(#cushion)"/>
+              <ellipse cx="304" cy="270" rx="58" ry="74" fill="url(#cup)"/>
+              <ellipse cx="320" cy="270" rx="34" ry="52" fill="none" stroke="url(#band)" stroke-width="3" opacity=".9"/>
+              <circle cx="320" cy="270" r="8" fill="url(#band)"/>
+              <ellipse cx="80" cy="236" rx="14" ry="26" fill="rgba(255,255,255,.08)"/>
+              <ellipse cx="288" cy="236" rx="14" ry="26" fill="rgba(255,255,255,.1)"/>
+            </svg>
+            <div class="shadow"></div>
+            <div class="tag-f t1 glass"><b>60 h</b>battery</div>
+            <div class="tag-f t2 glass"><b>−42 dB</b>noise cancelling</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="features" class="wrap">
+      <span class="kicker rv">Features</span>
+      <h2 class="rv">Engineered for <span class="grad">focus.</span></h2>
+      <div class="bento">
+        <article class="glass wide rv">
+          <div class="wave" aria-hidden="true" id="wave"></div>
+          <div><h3>Graphene drivers</h3><p>40 mm diaphragms, stiffer than steel and lighter than paper, for bass that stays tight at any volume.</p></div>
+        </article>
+        <article class="glass rv">
+          <div class="big grad">60h</div>
+          <div><h3>All-week battery</h3><p>Ten minutes on USB-C gives you five more hours.</p></div>
+        </article>
+        <article class="glass rv">
+          <div class="anc-viz" id="anc-viz" data-mode="anc" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div>
+            <h3>Adaptive ANC</h3>
+            <p id="anc-desc">Eight mics sample the room 50,000 times a second.</p>
+            <div class="anc" role="group" aria-label="Listening mode">
+              <button type="button" data-mode="anc" aria-pressed="true">ANC</button>
+              <button type="button" data-mode="aware" aria-pressed="false">Aware</button>
+              <button type="button" data-mode="off" aria-pressed="false">Off</button>
+            </div>
+          </div>
+        </article>
+        <article class="glass rv">
+          <div class="big">212g</div>
+          <div><h3>Barely there</h3><p>Memory-foam cushions and a magnesium frame. Wear them all day.</p></div>
+        </article>
+        <article class="glass rv">
+          <div class="big">3D</div>
+          <div><h3>Spatial audio</h3><p>Head tracking that keeps the stage in front of you.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="specs" class="wrap">
+      <div class="specs">
+        <div>
+          <span class="kicker rv">Tech specs</span>
+          <h2 class="rv">Every detail, measured.</h2>
+        </div>
+        <dl class="rv">
+          <div class="spec"><dt>Drivers</dt><dd>40 mm graphene, dynamic</dd></div>
+          <div class="spec"><dt>Frequency response</dt><dd>4 Hz – 40 kHz</dd></div>
+          <div class="spec"><dt>Noise cancelling</dt><dd>Adaptive hybrid, 8 mics, up to −42 dB</dd></div>
+          <div class="spec"><dt>Battery</dt><dd>60 h (ANC off) · 40 h (ANC on)</dd></div>
+          <div class="spec"><dt>Connectivity</dt><dd>Bluetooth 5.4, LE Audio, multipoint</dd></div>
+          <div class="spec"><dt>Codecs</dt><dd>LC3, AAC, LDAC</dd></div>
+          <div class="spec"><dt>Weight</dt><dd>212 g</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="buy" class="wrap">
+      <div class="glass cta rv">
+        <h2>Hear what you’ve been <span class="grad">missing.</span></h2>
+        <p>Free shipping, 60-night trial, two-year warranty.</p>
+        <div class="buy"><div class="price">$349</div><a class="btn btn-glow" href="#">Pre-order Nova One</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap"><span>© 2026 Nova Audio — fictional brand, concept site</span><span>Design &amp; code: protocol-0dey</span></div></footer>
+
+  <script>
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Mobile nav
+    const nav = document.querySelector('.nav'), burger = document.querySelector('.burger');
+    const setMenu = open => { nav.classList.toggle('open', open); burger.setAttribute('aria-expanded', open); burger.textContent = open ? '✕' : '☰'; burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); };
+    burger.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+    // Color picker (roving radio group)
+    const sw = [...document.querySelectorAll('.swatches button')];
+    const pick = b => {
+      sw.forEach(x => { x.setAttribute('aria-checked', x === b); x.tabIndex = x === b ? 0 : -1; });
+      document.body.dataset.color = b.dataset.color;
+      document.getElementById('color-name').textContent = b.dataset.name;
+    };
+    sw.forEach((b, i) => {
+      b.tabIndex = i ? -1 : 0;
+      b.addEventListener('click', () => pick(b));
+      b.addEventListener('keydown', e => {
+        const d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+        if (!d) return; e.preventDefault();
+        const n = sw[(i + d + sw.length) % sw.length]; pick(n); n.focus();
+      });
+    });
+
+    // 3D parallax on product
+    const stage = document.querySelector('.stage'), product = document.getElementById('product');
+    if (!reduce) {
+      stage.addEventListener('pointermove', e => {
+        const r = stage.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        product.style.animationPlayState = 'paused';
+        product.style.transform = `rotateY(${x * 30}deg) rotateX(${-y * 24}deg)`;
+      });
+      stage.addEventListener('pointerleave', () => { product.style.transform = ''; product.style.animationPlayState = 'running'; });
+    }
+
+    // Equalizer bars
+    const wave = document.getElementById('wave');
+    wave.innerHTML = Array.from({ length: 48 }, (_, i) => {
+      const h = 20 + Math.abs(Math.sin(i * .45)) * 80;
+      return `<i style="height:${h}%;animation-delay:${(i % 12) * -0.1}s"></i>`;
+    }).join('');
+
+    // ANC modes
+    const modes = { anc: 'Eight mics sample the room 50,000 times a second.', aware: 'Voices and announcements pass through, everything else fades.', off: 'Pure passive isolation for the longest battery life.' };
+    document.querySelectorAll('.anc button').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('.anc button').forEach(x => x.setAttribute('aria-pressed', x === b));
+      document.getElementById('anc-viz').dataset.mode = b.dataset.mode;
+      document.getElementById('anc-desc').textContent = modes[b.dataset.mode];
+    }));
+
+    // Spotlight on glass cards
+    document.querySelectorAll('.glass').forEach(c => {
+      c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(); c.style.setProperty('--mx', e.clientX - r.left + 'px'); c.style.setProperty('--my', e.clientY - r.top + 'px'); });
+      c.addEventListener('pointerleave', () => { c.style.setProperty('--mx', '-500px'); c.style.setProperty('--my', '-500px'); });
+    });
+
+    // Reveal
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
